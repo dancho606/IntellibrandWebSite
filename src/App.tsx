@@ -1,0 +1,414 @@
+///// <reference types="vite/client" />
+
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Brain, Menu, X, ArrowRight, Zap, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import About from './about';
+//import heroBgImage from './assets/hero-ai.png'; //換影片
+// @ts-ignore
+import videoDesktop from './assets/hero-desktop.mp4'; // 原本的寬影片
+// @ts-ignore
+import videoMobile from './assets/hero-mobile.mp4';   // 新的 1:1 影片
+
+// ========================================== 
+//   區域一：6 個獨立的服務詳情頁 (您可以分別編輯這裡)
+// ==========================================
+
+// 1. AI 網站建置 - 獨立頁面
+function ServiceWebsite() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-2xl" alt="Website" />
+          <div>
+            <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 網站建置</h1>
+            <p className="text-xl text-slate-600 mb-6">我們結合 React 與 AI 技術，為您打造載入速度極快、SEO 架構完美的現代化官網。</p>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 響應式設計 (RWD)</li>
+              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 後台管理系統</li>
+            </ul>
+            <button className="px-8 py-3 bg-[#2563eb] text-white rounded-full font-bold hover:bg-blue-600">索取網站報價</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 2. AI 影片製作 - 獨立頁面
+function ServiceVideo() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-2xl" alt="Video" />
+          <div>
+            <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 影片製作</h1>
+            <p className="text-xl text-slate-600 mb-6">Text-to-Video 技術革命。不需要攝影棚，只需腳本，AI 就能為您生成高品質的行銷短片。</p>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-purple-600 mr-2" /> 快速產出短影音</li>
+              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-purple-600 mr-2" /> 多語言配音</li>
+            </ul>
+            <button className="px-8 py-3 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800">觀看影片範例</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3. AI 數位替身 - 獨立頁面
+function ServiceAvatar() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 數位替身</h1>
+        <p className="text-xl text-slate-600 mb-8">打造企業專屬的 24 小時虛擬發言人。</p>
+        {/* 這裡示範不同的排版，方便您之後修改 */}
+        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+          <p>（這裡之後可以放數位替身的 Demo 影片）</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 4. 自媒體代操 - 獨立頁面
+function ServiceSocial() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">自媒體代操</h1>
+        <p className="text-xl text-slate-600">IG, TikTok, YouTube 全平台運營。</p>
+      </div>
+    </div>
+  );
+}
+
+// 5. AI 企業導入 - 獨立頁面
+function ServiceEnterprise() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">AI 企業導入</h1>
+        <p className="text-xl text-slate-600">建置私有化 LLM 知識庫，優化內部流程。</p>
+      </div>
+    </div>
+  );
+}
+
+// 6. AI 實戰課程 - 獨立頁面
+function ServiceCourse() {
+  return (
+    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">AI 實戰課程</h1>
+        <p className="text-xl text-slate-600">企業內訓與個人進修。</p>
+      </div>
+    </div>
+  );
+}
+
+
+// ==========================================
+//   區域二：首頁元件 (完整保留 Hero, Bento Grid, CTA)
+// ==========================================
+function Home() {
+  return (
+    <>
+      {/* 2. Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 z-10 overflow-hidden">
+        {/* Hero 背景區塊 */}
+        {/* 修改 1: 在父層 div 加入 bg-slate-900，讓 object-contain 留白時顯示深色背景 */}
+        <div className="absolute inset-0 z-0 bg-slate-900">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            {/* 手機版：螢幕寬度小於 768px 時，載入這支 9:16 直式影片 */}
+            <source src={videoMobile} type="video/mp4" media="(max-width: 768px)" />
+
+            {/* 電腦版：其餘情況載入這支寬螢幕影片 */}
+            <source src={videoDesktop} type="video/mp4" />
+
+            您的瀏覽器不支援 HTML5 影片。
+          </video>
+
+          {/* 漸層遮罩 (維持不變) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-50/60 to-slate-50"></div>
+        </div>
+        <div className="absolute right-[-10%] top-[20%] w-[800px] h-[800px] border border-blue-200/50 rounded-full animate-[spin_60s_linear_infinite]"></div>
+        <div className="absolute left-[-10%] bottom-[10%] w-[600px] h-[600px] border border-cyan-200/50 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
+
+        <div className="text-center max-w-5xl mx-auto relative z-10">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/80 border border-blue-100 shadow-sm text-[#2563eb] text-xs font-bold uppercase tracking-wider mb-8 backdrop-blur-sm animate-fade-in-up">
+            <span className="flex h-2 w-2 relative mr-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
+            </span>
+            AI MARKETING REVOLUTION
+          </div>
+
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1] text-slate-900 animate-fade-in-up">
+            智賦 AI<br />
+            <span className="text-gradient">預見品牌未來</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed animate-fade-in-up">
+            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br />從 <span className="text-slate-900 font-semibold underline decoration-[#06b6d4]/50 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="text-slate-900 font-semibold underline decoration-[#7c3aed]/50 decoration-2 underline-offset-4">數位替身</span>。
+          </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5 animate-fade-in-up">
+            <a href="#portfolio" className="group relative px-8 py-4 bg-slate-900 text-white rounded-full font-semibold transition-all hover:bg-[#2563eb] hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1">
+              <span className="relative z-10 flex items-center gap-2">
+                瀏覽精選案例 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </a>
+            <Link to="/about" className="px-8 py-4 rounded-full bg-white/80 border border-slate-200 text-slate-700 font-medium hover:border-[#2563eb] hover:text-[#2563eb] hover:bg-white transition-all duration-300 shadow-sm backdrop-blur-sm">
+              關於智賦
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. 服務亮點 (Services) - 改為 Link 跳轉到對應頁面 */}
+      <section id="services" className="relative py-24 px-6 lg:px-8 z-10 bg-white/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-slate-900">核心服務項目</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full"></div>
+            <p className="mt-4 text-slate-500 text-lg">全方位的 AI 賦能解決方案，精準對接商業需求</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              // 定義每個卡片要跳轉的路徑 (link)
+              { title: "AI 網站建置", link: "/service/website", desc: "Web App 開發與極速響應式設計。", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { title: "AI 影片製作", link: "/service/video", desc: "Text-to-Video 技術，快速產出高品質短片。", img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { title: "AI 數位替身", link: "/service/avatar", desc: "打造企業專屬虛擬代言人，自動化影片生成。", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { title: "自媒體代操", link: "/service/social", desc: "IG, TikTok, YouTube 全平台運營與內容生成。", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { title: "AI 企業導入", link: "/service/enterprise", desc: "優化工作流程，整合 AI 工具至企業內部。", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+              { title: "AI 實戰課程", link: "/service/course", desc: "企業內訓與個人進修，掌握最新 AI 工具應用。", img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+            ].map((item, index) => (
+              // 這裡使用 Link 元件包裹，點擊跳轉到 item.link
+              <Link to={item.link} key={index} className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 border border-white/50 h-64 bg-slate-200 block cursor-pointer">
+                <img src={item.img} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" />
+                <div className="absolute bottom-0 left-0 p-6 w-full z-10 bg-gradient-to-t from-black/60 to-transparent">
+                  <h3 className="text-2xl font-bold mb-2 text-white font-display" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                    {item.title} <ArrowRight className="inline-block w-5 h-5 ml-1 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
+                  </h3>
+                  <p className="text-sm leading-relaxed text-white/90 font-medium">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. 精選案例 (Portfolio) - 完整保留您的 Bento Grid */}
+      <section id="portfolio" className="relative py-24 z-10">
+        <div className="absolute inset-0 bg-slate-100 skew-y-2 transform origin-top-left -z-10"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-3 text-slate-900">精選案例</h2>
+              <p className="text-slate-500 text-lg">融合創意與技術的實戰成果展示</p>
+            </div>
+            <div className="flex gap-2 mt-4 md:mt-0">
+              <button className="px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-medium shadow-lg shadow-slate-900/20">全部作品</button>
+              <button className="px-4 py-2 rounded-full bg-white text-slate-600 border border-slate-200 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors">Web App</button>
+            </div>
+          </div>
+
+          {/* Bento Grid Layout - 完整保留 */}
+          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-5 h-auto md:h-[650px]">
+            {/* Item 1: Web App / FinTech */}
+            <div className="md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Dashboard" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                <div className="flex justify-end">
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">SaaS Platform</span>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-white mb-2 translate-y-2 group-hover:translate-y-0 transition-transform">FinTech 智能數據後台</h3>
+                  <p className="text-slate-200 text-sm max-w-md opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    專為金融機構打造的 AI 預測儀表板，整合即時股市數據流與使用者行為熱點分析。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Item 2: Digital Avatar */}
+            <div className="md:col-span-2 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
+              <img src="https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Avatar" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                <div className="flex justify-end">
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">AI Avatar</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">虛擬代言人專案</h3>
+                  <p className="text-slate-300 text-sm">AI 生成真人級別口播影片</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Item 3: AI Art */}
+            <div className="md:col-span-1 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
+              <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Art" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-lg font-bold text-white mb-1">品牌視覺重塑</h3>
+              </div>
+            </div>
+
+            {/* Item 4: Website */}
+            <div className="md:col-span-1 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Website" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-lg font-bold text-white mb-1">科技公司官網</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CTA 區塊 */}
+      <section className="relative py-32 px-6 overflow-hidden bg-slate-900 text-white">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">準備好升級了嗎？</h2>
+          <Link to="/about" className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-slate-900 transition-all duration-200 bg-white rounded-full hover:shadow-white/30 hover:-translate-y-1">
+            <Zap className="mr-2 w-5 h-5 text-yellow-500 fill-current" />
+            了解更多關於我們
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// --- 元件：萬用捲動控制器 (這就是您要的功能) ---
+// 它會自動判斷：
+// 1. 如果只是換頁 (沒有 #)，就回到最上面。
+// 2. 如果有 # (例如 #services)，就滑動到該區塊。
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    // 情況 A：網址帶有錨點 (例如 /#services)
+    if (hash) {
+      // 等待 0.1 秒，確保首頁的畫面已經長出來了，才開始滑動
+      const timer = setTimeout(() => {
+        const element = document.getElementById(hash.substring(1)); // 去掉 # 號，找 ID
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' }); // 平滑滑動
+        }
+      }, 100);
+      return () => clearTimeout(timer); // 清理計時器
+    }
+    // 情況 B：純粹換頁 (例如從首頁點到關於我們)
+    else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]); // 只要路徑或 hash 改變，就重新執行這個功能
+
+  return null;
+}
+
+// ==========================================
+//   區域三：App 主程式 (路由設定中心)
+// ==========================================
+export default function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="bg-slate-50 text-slate-900 antialiased overflow-x-hidden font-sans">
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap');
+          .text-gradient { background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+          .font-display { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; }
+          .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8); }
+        `}</style>
+
+        {/* 1. 導覽列 */}
+        <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'shadow-md bg-white/95 backdrop-blur-md' : 'glass-nav'}`}>
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex items-center justify-between h-20">
+              <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#2563eb] to-[#06b6d4] flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <Brain className="w-5 h-5" />
+                </div>
+                <span className="font-display text-xl font-bold tracking-tight text-slate-900">
+                  IntelliBrand<span className="text-[#06b6d4]">.AI</span>
+                </span>
+              </Link>
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-center space-x-8">
+                  <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">關於智賦</Link>
+                  <Link to="/#services" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">服務項目</Link>
+                  <Link to="/#portfolio" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">精選案例</Link>
+                  <Link to="/#contact" className="px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">聯絡我們</Link>
+                </div>
+              </div>
+              <div className="md:hidden">
+                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-slate-600 p-2">
+                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
+            </div>
+          </div>
+          {isMobileMenuOpen && (
+            <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-xl">
+              <div className="px-4 pt-2 pb-6 space-y-1 text-center">
+                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600">關於智賦</Link>
+              </div>
+            </div>
+          )}
+        </nav>
+
+        {/* --- 路由設定：在這裡定義每個網址要顯示哪個元件 --- */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+
+          {/* 6 個獨立的服務分頁 (對應上面定義的元件) */}
+          <Route path="/service/website" element={<ServiceWebsite />} />
+          <Route path="/service/video" element={<ServiceVideo />} />
+          <Route path="/service/avatar" element={<ServiceAvatar />} />
+          <Route path="/service/social" element={<ServiceSocial />} />
+          <Route path="/service/enterprise" element={<ServiceEnterprise />} />
+          <Route path="/service/course" element={<ServiceCourse />} />
+        </Routes>
+
+        {/* 頁尾 */}
+        <footer className="bg-slate-50 pt-16 pb-8 border-t border-slate-200 mt-auto">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <p className="text-slate-400 text-sm">© 2024 IntelliBrand AI. All rights reserved.</p>
+          </div>
+        </footer>
+
+      </div>
+    </Router>
+  );
+}
