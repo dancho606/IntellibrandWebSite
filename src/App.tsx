@@ -158,13 +158,13 @@ function Home() {
             AI MARKETING REVOLUTION
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1] text-slate-900 animate-fade-in-up">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.3), 0 0 40px rgba(0,0,0,0.5)' }}>
             智賦 AI<br />
-            <span className="text-gradient">預見品牌未來</span>
+            <span className="text-gradient" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.3), 0 0 40px rgba(0,0,0,0.5)' }}>預見品牌未來</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-600 leading-relaxed animate-fade-in-up">
-            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br />從 <span className="text-slate-900 font-semibold underline decoration-[#06b6d4]/50 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="text-slate-900 font-semibold underline decoration-[#7c3aed]/50 decoration-2 underline-offset-4">數位替身</span>。
+          <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-white leading-relaxed animate-fade-in-up font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.9), -1px -1px 1px rgba(255,255,255,0.2), 0 0 20px rgba(0,0,0,0.6)' }}>
+            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br />從 <span className="font-bold underline decoration-cyan-400/80 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="font-bold underline decoration-purple-400/80 decoration-2 underline-offset-4">數位替身</span>。
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5 animate-fade-in-up">
