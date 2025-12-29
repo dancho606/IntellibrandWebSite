@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://intellibrand.ai/</loc>
+    <loc>https://theintellibrand.com/</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://intellibrand.ai/about</loc>
+    <loc>https://theintellibrand.com/about</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -18,42 +18,42 @@
   
   <!-- Service Pages -->
   <url>
-    <loc>https://intellibrand.ai/service/website</loc>
+    <loc>https://theintellibrand.com/service/website</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://intellibrand.ai/service/video</loc>
+    <loc>https://theintellibrand.com/service/video</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://intellibrand.ai/service/avatar</loc>
+    <loc>https://theintellibrand.com/service/avatar</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://intellibrand.ai/service/social</loc>
+    <loc>https://theintellibrand.com/service/social</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://intellibrand.ai/service/enterprise</loc>
+    <loc>https://theintellibrand.com/service/enterprise</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://intellibrand.ai/service/course</loc>
+    <loc>https://theintellibrand.com/service/course</loc>
     <lastmod>2024-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
