@@ -126,14 +126,13 @@ function Home() {
       {/* 2. Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 z-10 overflow-hidden">
         {/* Hero 背景區塊 */}
-        {/* 修改 1: 在父層 div 加入 bg-slate-900，讓 object-contain 留白時顯示深色背景 */}
         <div className="absolute inset-0 z-0 bg-slate-900">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover md:object-cover object-contain"
           >
             {/* 手機版：螢幕寬度小於 768px 時，載入這支 9:16 直式影片 */}
             <source src={videoMobile} type="video/mp4" media="(max-width: 768px)" />
