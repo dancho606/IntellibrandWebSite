@@ -130,7 +130,7 @@ function Home() {
       {showContactForm && (
         <ContactForm
           onClose={() => setShowContactForm(false)}
-        // scriptUrl="YOUR_GOOGLE_APPS_SCRIPT_URL" // 使用者設定好後填入
+          scriptUrl="https://script.google.com/macros/s/AKfycby4ODg5SvYnWNbg7r93-jMAZy0q_GXBFp1jA9sIzJkcvbHf9bIq3cicBB1UUYFbyG11/exec"
         />
       )}
 
