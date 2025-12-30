@@ -161,14 +161,14 @@ function Home() {
 
           {/* 主標題 - Mobile First */}
           <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(255,255,255,0.2), 0 0 50px rgba(0,0,0,0.7)' }}>
-            智賦 AI<br />
-            <span className="text-gradient inline-block mt-2" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.7)' }}>預見品牌未來</span>
+            原來，您的品牌<br />
+            <span className="text-gradient inline-block mt-2" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.7)' }}>也能擁有 AI 超級銷售力</span>
           </h1>
 
           {/* 說明文字 - 手機端優化 */}
           <p className="mt-4 md:mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white leading-relaxed animate-fade-in-up font-medium px-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.95), -1px -1px 2px rgba(255,255,255,0.2), 0 0 30px rgba(0,0,0,0.8)' }}>
-            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br className="hidden sm:block" />
-            <span className="block sm:inline">從 <span className="font-bold underline decoration-cyan-400/80 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="font-bold underline decoration-purple-400/80 decoration-2 underline-offset-4">數位替身</span>。</span>
+            AI 不再是科技巨頭的專利。我們協助您<span className="text-cyan-300 font-bold">輕鬆導入</span>自動化行銷，釋放潛能，讓業績與效率<span className="text-yellow-300 font-bold">同步翻倍</span>。<br className="hidden sm:block" />
+            <span className="block sm:inline mt-2">點擊下方按鈕，開啟您的自動化獲利之旅。</span>
           </p>
 
           {/* CTA 按鈕 - Mobile First */}
@@ -176,14 +176,14 @@ function Home() {
             {/* 主要 CTA - 手機端全寬 */}
             <a href="#portfolio" className="group relative w-full sm:w-auto px-8 py-4 md:py-4 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full font-bold text-base md:text-base transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
               <span className="relative z-10 flex items-center gap-2">
-                瀏覽精選案例 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
+                開啟我的 AI 銷售優勢 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
 
             {/* 次要 CTA - 手機端全寬 */}
             <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full glass-strong border border-white/30 text-white font-semibold text-base md:text-base hover:bg-white/20 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
-              關於智賦
+              預約免費諮詢
             </Link>
           </div>
         </div>
