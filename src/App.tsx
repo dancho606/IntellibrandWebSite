@@ -545,13 +545,44 @@ function Home() {
       </section>
 
       {/* 8. CTA 區塊 - 強化版 */}
-      <section className="relative py-32 px-6 overflow-hidden bg-slate-900 text-white">
+      <section className="relative py-20 md:py-32 px-4 md:px-6 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        {/* 背景裝飾 */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full filter blur-[150px] opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-600 rounded-full filter blur-[150px] opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">準備好升級了嗎？</h2>
-          <Link to="/about" className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-slate-900 transition-all duration-200 bg-white rounded-full hover:shadow-white/30 hover:-translate-y-1">
-            <Zap className="mr-2 w-5 h-5 text-yellow-500 fill-current" />
-            了解更多關於我們
-          </Link>
+          {/* 標題 */}
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 animate-fade-in-up">
+            準備好開始您的
+            <span className="block mt-2 text-gradient">AI 轉型之旅了嗎？</span>
+          </h2>
+
+          {/* 副標題 */}
+          <p className="text-base md:text-xl text-slate-300 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{ animationDelay: '0.1s' }}>
+            立即預約免費諮詢，讓我們的專業團隊為您量身打造最適合的 AI 解決方案
+          </p>
+
+          {/* CTA 按鈕組 - Mobile 單一按鈕，Desktop 雙按鈕 */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-up max-w-md sm:max-w-none mx-auto" style={{ animationDelay: '0.2s' }}>
+            {/* 主要 CTA */}
+            <a href="#contact" className="group w-full sm:w-auto inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-bold text-slate-900 transition-all duration-300 bg-gradient-to-r from-white to-slate-100 rounded-full hover:shadow-2xl hover:shadow-white/30 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-0">
+              <Zap className="mr-2 w-5 h-5 md:w-6 md:h-6 text-yellow-500 fill-current group-hover:animate-pulse" />
+              立即預約諮詢
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            {/* 次要 CTA - 僅桌面顯示 */}
+            <a href="#portfolio" className="hidden sm:inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold glass-strong border border-white/30 text-white rounded-full hover:bg-white/20 transition-all duration-300 shadow-lg">
+              查看成功案例
+            </a>
+          </div>
+
+          {/* 信任標章 */}
+          <div className="mt-12 md:mt-16 flex flex-wrap justify-center gap-6 md:gap-8 items-center opacity-60 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <div className="text-sm md:text-base">✓ 98% 客戶滿意度</div>
+            <div className="text-sm md:text-base">✓ 10x 效率提升</div>
+            <div className="text-sm md:text-base">✓ 專業團隊支持</div>
+          </div>
         </div>
       </section>
     </>
