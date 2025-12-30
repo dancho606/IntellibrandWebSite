@@ -257,7 +257,8 @@ export default function ContactForm({ onClose, scriptUrl }: ContactFormProps) {
                                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                             >
                                 <option value="">請選擇</option>
-                                <option value="20萬以下">20 萬以下</option>
+                                <option value="5萬以下">5 萬以下</option>
+                                <option value="5-20萬">5-20 萬</option>
                                 <option value="20-50萬">20-50 萬</option>
                                 <option value="50-100萬">50-100 萬</option>
                                 <option value="100萬以上">100 萬以上</option>
