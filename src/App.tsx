@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { Brain, Menu, X, ArrowRight, Zap, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import About from './about';
 import ContactForm from './components/ContactForm';
+import PricingPlans from './components/PricingPlans';
 //import heroBgImage from './assets/hero-ai.png'; //換影片
 // @ts-ignore
 import videoDesktop from './assets/hero-desktop.mp4'; // 原本的寬影片
@@ -30,7 +31,10 @@ function ServiceWebsite() {
               <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 響應式設計 (RWD)</li>
               <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 後台管理系統</li>
             </ul>
-            <button className="px-8 py-3 bg-[#2563eb] text-white rounded-full font-bold hover:bg-blue-600">索取網站報價</button>
+            <div className="flex gap-4">
+              <Link to="/service/website/pricing" className="px-8 py-3 bg-[#2563eb] text-white rounded-full font-bold hover:bg-blue-600 transition-all hover:shadow-lg inline-block">查看方案報價</Link>
+              <button className="px-8 py-3 border-2 border-[#2563eb] text-[#2563eb] rounded-full font-bold hover:bg-[#2563eb] hover:text-white transition-all">索取客製報價</button>
+            </div>
           </div>
         </div>
       </div>
@@ -219,7 +223,7 @@ function Home() {
             {[
               {
                 title: "AI 網站建置",
-                link: "/service/website",
+                link: "/service/website/pricing",
                 desc: "Web App 開發與極速響應式設計",
                 img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 gradient: "from-blue-600/90 to-blue-800/90"
@@ -699,6 +703,7 @@ export default function App() {
 
           {/* 6 個獨立的服務分頁 (對應上面定義的元件) */}
           <Route path="/service/website" element={<ServiceWebsite />} />
+          <Route path="/service/website/pricing" element={<PricingPlans />} />
           <Route path="/service/video" element={<ServiceVideo />} />
           <Route path="/service/avatar" element={<ServiceAvatar />} />
           <Route path="/service/social" element={<ServiceSocial />} />

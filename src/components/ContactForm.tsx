@@ -138,7 +138,7 @@ export default function ContactForm({ onClose, scriptUrl }: ContactFormProps) {
     }
 
     return (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-start sm:items-center justify-center z-50 p-4 animate-fade-in overflow-y-auto">
             <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full my-8 relative animate-fade-in-up">
                 {/* 關閉按鈕 */}
                 <button
