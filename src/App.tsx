@@ -176,13 +176,13 @@ function Home() {
             {/* 主要 CTA - 手機端全寬 */}
             <a href="#portfolio" className="group relative w-full sm:w-auto px-8 py-4 md:py-4 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full font-bold text-base md:text-base transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
               <span className="relative z-10 flex items-center gap-2">
-                開啟我的 AI 銷售優勢 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
+                參考案例 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
 
             {/* 次要 CTA - 手機端全寬 */}
-            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full glass-strong border border-white/30 text-white font-semibold text-base md:text-base hover:bg-white/20 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
+            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/10 border-2 border-white/50 text-white font-semibold text-base md:text-base hover:bg-white/25 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
               預約免費諮詢
             </Link>
           </div>
