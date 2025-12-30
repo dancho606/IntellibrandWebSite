@@ -173,7 +173,7 @@ function Home() {
           {/* 主標題 - Mobile First */}
           <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(255,255,255,0.2), 0 0 50px rgba(0,0,0,0.7)' }}>
             智慧賦能<br />
-            <span className="text-gradient inline-block mt-2" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.7)' }}>讓 AI 幫您升級</span>
+            <span className="inline-block mt-2 text-white" style={{ WebkitTextStroke: '2px #2563eb', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>讓 AI 幫您升級</span>
           </h1>
 
           {/* 說明文字 - 手機端優化 */}
