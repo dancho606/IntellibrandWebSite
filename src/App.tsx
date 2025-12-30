@@ -365,7 +365,186 @@ function Home() {
         </div>
       </section>
 
-      {/* 5. CTA 區塊 */}
+      {/* 5. 客戶見證 (Testimonials) - 輪播設計 */}
+      <section id="testimonials" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* 標題 */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">客戶見證</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
+            <p className="text-slate-600 text-base md:text-lg font-medium">聽聽客戶怎麼說</p>
+          </div>
+
+          {/* 見證卡片 - 手機單欄滾動，桌面3欄網格 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                name: "張執行長",
+                title: "科技新創公司 CEO",
+                company: "NextGen Tech",
+                content: "智賦 AI 團隊的專業程度超出預期！他們不僅快速交付了高品質的網站，更重要的是真正理解我們的商業需求。",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              },
+              {
+                name: "李總監",
+                title: "行銷總監",
+                company: "美妝電商品牌",
+                content: "AI 影片製作服務真的太神了！以前要花 2-3 天拍攝剪輯的影片，現在半天就能產出，品質還更好。ROI 提升了 300%！",
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              },
+              {
+                name: "陳經理",
+                title: "數位轉型經理",
+                company: "傳統製造業",
+                content: "我們是傳統產業，對 AI 完全不懂。智賦團隊很有耐心地教導我們，現在整個公司的工作效率提升了 50%！",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="glass-strong p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 card-3d animate-fade-in-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                {/* 引號圖標 */}
+                <div className="text-[#2563eb] mb-4 md:mb-6">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                  </svg>
+                </div>
+
+                {/* 評價內容 */}
+                <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6 md:mb-8 min-h-[80px] md:min-h-[100px]">
+                  "{testimonial.content}"
+                </p>
+
+                {/* 客戶資訊 */}
+                <div className="flex items-center gap-4">
+                  <img src={testimonial.avatar} alt={testimonial.name} className="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-white shadow-lg" loading="lazy" />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-base md:text-lg">{testimonial.name}</h4>
+                    <p className="text-sm text-slate-600">{testimonial.title}</p>
+                    <p className="text-xs text-slate-500">{testimonial.company}</p>
+                  </div>
+                </div>
+
+                {/* 星星評分 */}
+                <div className="flex gap-1 mt-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. 為什麼選擇我們 (Why Choose Us) */}
+      <section id="why-us" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto">
+          {/* 標題 */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">為什麼選擇智賦 AI</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
+            <p className="text-slate-600 text-base md:text-lg font-medium max-w-2xl mx-auto">結合技術實力與商業洞察，我們不只是服務提供者，更是您的數位轉型夥伴</p>
+          </div>
+
+          {/* 優勢卡片 - 手機單欄，桌面2x2網格 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+            {[
+              {
+                icon: "⚡",
+                title: "10x 效率提升",
+                description: "AI 自動化工具讓您的團隊專注在核心業務，重複性工作交給 AI 處理，效率提升 10 倍以上。",
+                color: "from-blue-500 to-cyan-500"
+              },
+              {
+                icon: "🎯",
+                title: "精準商業策略",
+                description: "不只是技術實現，我們深入了解您的商業模式，提供真正能帶來 ROI 的解決方案。",
+                color: "from-purple-500 to-pink-500"
+              },
+              {
+                icon: "🚀",
+                title: "快速交付",
+                description: "平均 2-4 週完成專案，比傳統開發快 3-5 倍。從需求訪談到上線，全程高效推進。",
+                color: "from-orange-500 to-red-500"
+              },
+              {
+                icon: "💎",
+                title: "持續優化支持",
+                description: "專案交付不是結束，而是開始。我們提供長期技術支持與優化建議，確保您的投資持續增值。",
+                color: "from-emerald-500 to-teal-500"
+              }
+            ].map((item, index) => (
+              <div key={index} className="group relative bg-white p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 card-3d animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                {/* 背景裝飾 */}
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.color} opacity-5 rounded-full blur-3xl group-hover:opacity-10 transition-opacity`}></div>
+
+                {/* 圖標 */}
+                <div className="text-6xl md:text-7xl mb-4 md:mb-6 relative z-10">{item.icon}</div>
+
+                {/* 標題 */}
+                <h3 className="font-display text-xl md:text-2xl font-bold mb-3 md:mb-4 text-slate-900 relative z-10">{item.title}</h3>
+
+                {/* 描述 */}
+                <p className="text-slate-600 text-sm md:text-base leading-relaxed relative z-10">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. 團隊介紹 (Team) - 精簡版 */}
+      <section id="team" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
+          {/* 標題 */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">核心團隊</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
+            <p className="text-slate-600 text-base md:text-lg font-medium">跨領域專業，為您打造最佳解決方案</p>
+          </div>
+
+          {/* 團隊成員 - 手機單欄，桌面3欄 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                name: "卓垣甫 / Dan",
+                role: "創始人 & AI 技術總監",
+                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                bio: "10+ 年軟體開發經驗"
+              },
+              {
+                name: "李英子 / Queena",
+                role: "創始股東 & CEO",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                bio: "跨領域品牌經營專家"
+              },
+              {
+                name: "黃素怡 / Sue",
+                role: "客戶成功經理",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                bio: "專案管理與客戶關係專家"
+              }
+            ].map((member, index) => (
+              <div key={index} className="group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-3d animate-fade-in-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                {/* 照片區 */}
+                <div className="relative h-80 md:h-96 overflow-hidden">
+                  <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent"></div>
+
+                  {/* 名字和職位 - 浮在照片上 */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>{member.name}</h3>
+                    <p className="text-sm md:text-base text-cyan-300 font-semibold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>{member.role}</p>
+                    <p className="text-sm text-white/90" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>{member.bio}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. CTA 區塊 - 強化版 */}
       <section className="relative py-32 px-6 overflow-hidden bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">準備好升級了嗎？</h2>
