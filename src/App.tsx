@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Brain, Menu, X, ArrowRight, Zap, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import About from './about';
+import ContactForm from './components/ContactForm';
 //import heroBgImage from './assets/hero-ai.png'; //換影片
 // @ts-ignore
 import videoDesktop from './assets/hero-desktop.mp4'; // 原本的寬影片
@@ -121,8 +122,18 @@ function ServiceCourse() {
 //   區域二：首頁元件 (完整保留 Hero, Bento Grid, CTA)
 // ==========================================
 function Home() {
+  const [showContactForm, setShowContactForm] = useState(false);
+
   return (
     <>
+      {/* ContactForm 彈出視窗 */}
+      {showContactForm && (
+        <ContactForm
+          onClose={() => setShowContactForm(false)}
+        // scriptUrl="YOUR_GOOGLE_APPS_SCRIPT_URL" // 使用者設定好後填入
+        />
+      )}
+
       {/* 2. Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 z-10 overflow-hidden">
         {/* Hero 背景區塊 */}
@@ -182,9 +193,13 @@ function Home() {
             </a>
 
             {/* 次要 CTA - 手機端全寬 */}
-            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/25 border-2 border-white/60 text-white font-bold text-base md:text-base hover:bg-white/35 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.95), -1px -1px 2px rgba(0,0,0,0.8)' }}>
+            <button
+              onClick={() => setShowContactForm(true)}
+              className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/25 border-2 border-white/60 text-white font-bold text-base md:text-base hover:bg-white/35 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center"
+              style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.95), -1px -1px 2px rgba(0,0,0,0.8)' }}
+            >
               預約免費諮詢
-            </Link>
+            </button>
           </div>
         </div>
       </section>
