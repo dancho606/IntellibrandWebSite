@@ -182,7 +182,7 @@ function Home() {
             </a>
 
             {/* 次要 CTA - 手機端全寬 */}
-            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/10 border-2 border-white/50 text-white font-semibold text-base md:text-base hover:bg-white/25 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/25 border-2 border-white/60 text-white font-bold text-base md:text-base hover:bg-white/35 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.95), -1px -1px 2px rgba(0,0,0,0.8)' }}>
               預約免費諮詢
             </Link>
           </div>
