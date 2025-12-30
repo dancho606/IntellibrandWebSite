@@ -149,8 +149,9 @@ function Home() {
         <div className="absolute right-[-10%] top-[20%] w-[800px] h-[800px] border border-blue-200/50 rounded-full animate-[spin_60s_linear_infinite]"></div>
         <div className="absolute left-[-10%] bottom-[10%] w-[600px] h-[600px] border border-cyan-200/50 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
 
-        <div className="text-center max-w-5xl mx-auto relative z-10">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/80 border border-blue-100 shadow-sm text-[#2563eb] text-xs font-bold uppercase tracking-wider mb-8 backdrop-blur-sm animate-fade-in-up">
+        <div className="text-center max-w-5xl mx-auto relative z-10 px-4">
+          {/* 頂部標籤 */}
+          <div className="inline-flex items-center px-4 py-2 md:py-1.5 rounded-full glass-strong border border-white/30 shadow-lg text-[#2563eb] text-xs md:text-xs font-bold uppercase tracking-wider mb-6 md:mb-8 animate-fade-in-up">
             <span className="flex h-2 w-2 relative mr-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
@@ -158,126 +159,206 @@ function Home() {
             AI MARKETING REVOLUTION
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.3), 0 0 40px rgba(0,0,0,0.5)' }}>
+          {/* 主標題 - Mobile First */}
+          <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(255,255,255,0.2), 0 0 50px rgba(0,0,0,0.7)' }}>
             智賦 AI<br />
-            <span className="text-gradient" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(255,255,255,0.3), 0 0 40px rgba(0,0,0,0.5)' }}>預見品牌未來</span>
+            <span className="text-gradient inline-block mt-2" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(0,0,0,0.5), 0 0 50px rgba(0,0,0,0.7)' }}>預見品牌未來</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-white leading-relaxed animate-fade-in-up font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.9), -1px -1px 1px rgba(255,255,255,0.2), 0 0 20px rgba(0,0,0,0.6)' }}>
-            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br />從 <span className="font-bold underline decoration-cyan-400/80 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="font-bold underline decoration-purple-400/80 decoration-2 underline-offset-4">數位替身</span>。
+          {/* 說明文字 - 手機端優化 */}
+          <p className="mt-4 md:mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white leading-relaxed animate-fade-in-up font-medium px-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.95), -1px -1px 2px rgba(255,255,255,0.2), 0 0 30px rgba(0,0,0,0.8)' }}>
+            運用生成式 AI 技術，我們為您打造全自動化行銷生態系。<br className="hidden sm:block" />
+            <span className="block sm:inline">從 <span className="font-bold underline decoration-cyan-400/80 decoration-2 underline-offset-4">數據洞察</span> 到 <span className="font-bold underline decoration-purple-400/80 decoration-2 underline-offset-4">數位替身</span>。</span>
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-5 animate-fade-in-up">
-            <a href="#portfolio" className="group relative px-8 py-4 bg-slate-900 text-white rounded-full font-semibold transition-all hover:bg-[#2563eb] hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1">
+          {/* CTA 按鈕 - Mobile First */}
+          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row justify-center gap-4 md:gap-5 animate-fade-in-up max-w-md sm:max-w-none mx-auto">
+            {/* 主要 CTA - 手機端全寬 */}
+            <a href="#portfolio" className="group relative w-full sm:w-auto px-8 py-4 md:py-4 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full font-bold text-base md:text-base transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
               <span className="relative z-10 flex items-center gap-2">
-                瀏覽精選案例 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                瀏覽精選案例 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
               </span>
+              <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
-            <Link to="/about" className="px-8 py-4 rounded-full bg-white/80 border border-slate-200 text-slate-700 font-medium hover:border-[#2563eb] hover:text-[#2563eb] hover:bg-white transition-all duration-300 shadow-sm backdrop-blur-sm">
+
+            {/* 次要 CTA - 手機端全寬 */}
+            <Link to="/about" className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full glass-strong border border-white/30 text-white font-semibold text-base md:text-base hover:bg-white/20 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
               關於智賦
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 3. 服務亮點 (Services) - 改為 Link 跳轉到對應頁面 */}
-      <section id="services" className="relative py-24 px-6 lg:px-8 z-10 bg-white/30">
+      {/* 3. 服務亮點 (Services) - Mobile First 優化 */}
+      <section id="services" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 z-10 bg-gradient-to-b from-white/30 to-slate-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-slate-900">核心服務項目</h2>
-            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full"></div>
-            <p className="mt-4 text-slate-500 text-lg">全方位的 AI 賦能解決方案，精準對接商業需求</p>
+          {/* 標題區 */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">核心服務項目</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
+            <p className="mt-3 md:mt-4 text-slate-600 text-base md:text-lg font-medium px-4">全方位的 AI 賦能解決方案，精準對接商業需求</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* 服務卡片 - Mobile First Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
-              // 定義每個卡片要跳轉的路徑 (link)
-              { title: "AI 網站建置", link: "/service/website", desc: "Web App 開發與極速響應式設計。", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-              { title: "AI 影片製作", link: "/service/video", desc: "Text-to-Video 技術，快速產出高品質短片。", img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-              { title: "AI 數位替身", link: "/service/avatar", desc: "打造企業專屬虛擬代言人，自動化影片生成。", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-              { title: "自媒體代操", link: "/service/social", desc: "IG, TikTok, YouTube 全平台運營與內容生成。", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-              { title: "AI 企業導入", link: "/service/enterprise", desc: "優化工作流程，整合 AI 工具至企業內部。", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-              { title: "AI 實戰課程", link: "/service/course", desc: "企業內訓與個人進修，掌握最新 AI 工具應用。", img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+              {
+                title: "AI 網站建置",
+                link: "/service/website",
+                desc: "Web App 開發與極速響應式設計",
+                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-blue-600/90 to-blue-800/90"
+              },
+              {
+                title: "AI 影片製作",
+                link: "/service/video",
+                desc: "Text-to-Video 技術，快速產出高品質短片",
+                img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-purple-600/90 to-purple-800/90"
+              },
+              {
+                title: "AI 數位替身",
+                link: "/service/avatar",
+                desc: "打造企業專屬虛擬代言人，自動化影片生成",
+                img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-cyan-600/90 to-cyan-800/90"
+              },
+              {
+                title: "自媒體代操",
+                link: "/service/social",
+                desc: "IG, TikTok, YouTube 全平台運營與內容生成",
+                img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-pink-600/90 to-pink-800/90"
+              },
+              {
+                title: "AI 企業導入",
+                link: "/service/enterprise",
+                desc: "優化工作流程，整合 AI 工具至企業內部",
+                img: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-indigo-600/90 to-indigo-800/90"
+              },
+              {
+                title: "AI 實戰課程",
+                link: "/service/course",
+                desc: "企業內訓與個人進修，掌握最新 AI 工具應用",
+                img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-emerald-600/90 to-emerald-800/90"
+              }
             ].map((item, index) => (
-              // 這裡使用 Link 元件包裹，點擊跳轉到 item.link
-              <Link to={item.link} key={index} className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-2 border border-white/50 h-64 bg-slate-200 block cursor-pointer">
-                <img src={item.img} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" />
-                <div className="absolute bottom-0 left-0 p-6 w-full z-10 bg-gradient-to-t from-black/60 to-transparent">
-                  <h3 className="text-2xl font-bold mb-2 text-white font-display" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-                    {item.title} <ArrowRight className="inline-block w-5 h-5 ml-1 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
+              <Link
+                to={item.link}
+                key={index}
+                className="group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 card-3d border border-white/20 h-72 md:h-80 block cursor-pointer animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* 背景圖片 */}
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105"
+                  loading="lazy"
+                />
+
+                {/* 漸變遮罩 - 手機端更深 */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-80 md:opacity-70 group-hover:opacity-85 transition-opacity duration-500`}></div>
+
+                {/* Glassmorphism 頂部裝飾 - 僅桌面 */}
+                <div className="hidden md:block absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+
+                {/* 內容區 - Mobile First */}
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-10">
+                  {/* 標題 */}
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white font-display flex items-center gap-2 md:gap-3" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                    {item.title}
+                    <ArrowRight className="w-6 h-6 md:w-5 md:h-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-x-2 transition-all duration-300" />
                   </h3>
-                  <p className="text-sm leading-relaxed text-white/90 font-medium">{item.desc}</p>
+
+                  {/* 描述文字 - 手機端常顯，桌面端 hover 顯示 */}
+                  <p className="text-sm md:text-base leading-relaxed text-white/95 md:text-white/90 font-medium md:opacity-100 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-0 md:group-hover:translate-y-0" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                    {item.desc}
+                  </p>
                 </div>
+
+                {/* 點擊回饋效果 - 僅手機 */}
+                <div className="md:hidden absolute inset-0 bg-white/10 opacity-0 active:opacity-100 transition-opacity pointer-events-none"></div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. 精選案例 (Portfolio) - 完整保留您的 Bento Grid */}
-      <section id="portfolio" className="relative py-24 z-10">
-        <div className="absolute inset-0 bg-slate-100 skew-y-2 transform origin-top-left -z-10"></div>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-            <div>
-              <h2 className="font-display text-3xl md:text-5xl font-bold mb-3 text-slate-900">精選案例</h2>
-              <p className="text-slate-500 text-lg">融合創意與技術的實戰成果展示</p>
+      {/* 4. 精選案例 (Portfolio) - Mobile First Bento Grid */}
+      <section id="portfolio" className="relative py-16 md:py-24 z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-slate-100 md:skew-y-2 transform origin-top-left -z-10"></div>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          {/* 標題與篩選 */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4">
+            <div className="animate-fade-in-up">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 text-slate-900">精選案例</h2>
+              <p className=" text-slate-600 text-base md:text-lg font-medium">融合創意與技術的實戰成果展示</p>
             </div>
-            <div className="flex gap-2 mt-4 md:mt-0">
-              <button className="px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-medium shadow-lg shadow-slate-900/20">全部作品</button>
-              <button className="px-4 py-2 rounded-full bg-white text-slate-600 border border-slate-200 text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors">Web App</button>
+            {/* 篩選按鈕 - 手機端橫向滾動 */}
+            <div className="flex gap-2 overflow-x-auto md:overflow-visible w-full md:w-auto pb-2 md:pb-0 scroll-container animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-gradient-to-r from-slate-900 to-slate-800 text-white text-sm font-semibold shadow-lg shadow-slate-900/20 whitespace-nowrap flex-shrink-0">全部作品</button>
+              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">Web App</button>
+              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">影片</button>
+              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">AI</button>
             </div>
           </div>
 
-          {/* Bento Grid Layout - 完整保留 */}
-          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-5 h-auto md:h-[650px]">
-            {/* Item 1: Web App / FinTech */}
-            <div className="md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Dashboard" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+          {/* Bento Grid Layout - 手機單欄，桌面 Bento */}
+          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-5 md:h-[650px]">
+            {/* Item 1: Featured Project - 手機全寬 */}
+            <div className="md:col-span-2 md:row-span-2 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[300px] md:min-h-0 animate-fade-in-up">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Dashboard" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/50 to-transparent md:from-slate-900/90 md:via-slate-900/40 md:to-transparent opacity-90 group-hover:opacity-95 transition-opacity"></div>
+              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+                {/* 標籤 */}
                 <div className="flex justify-end">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">SaaS Platform</span>
+                  <span className="px-3 py-1.5 glass-strong border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">SaaS Platform</span>
                 </div>
-                <div>
-                  <h3 className="text-3xl font-bold text-white mb-2 translate-y-2 group-hover:translate-y-0 transition-transform">FinTech 智能數據後台</h3>
-                  <p className="text-slate-200 text-sm max-w-md opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                {/* 內容 */}
+                <div className="animate-slide-in-right">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>FinTech 智能數據後台</h3>
+                  <p className="text-sm md:text-base text-white/95 md:text-slate-200 max-w-md md:opacity-100 md:group-hover:opacity-100 md:translate-y-0 md:group-hover:translate-y-0 transition-all duration-500 leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
                     專為金融機構打造的 AI 預測儀表板，整合即時股市數據流與使用者行為熱點分析。
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Item 2: Digital Avatar */}
-            <div className="md:col-span-2 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
-              <img src="https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Avatar" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-              <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            {/* Item 2: Digital Avatar - 手機全寬 */}
+            <div className="md:col-span-2 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <img src="https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Avatar" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
+              <div className="absolute inset-0 p-6 md:p-6 flex flex-col justify-between z-10">
                 <div className="flex justify-end">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">AI Avatar</span>
+                  <span className="px-3 py-1.5 glass-strong border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">AI Avatar</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">虛擬代言人專案</h3>
-                  <p className="text-slate-300 text-sm">AI 生成真人級別口播影片</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>虛擬代言人專案</h3>
+                  <p className="text-sm text-white/95 md:text-slate-300 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>AI 生成真人級別口播影片</p>
                 </div>
               </div>
             </div>
 
-            {/* Item 3: AI Art */}
-            <div className="md:col-span-1 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
-              <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Art" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            {/* Item 3: AI Art - 手機全寬 */}
+            <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Art" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                <h3 className="text-lg font-bold text-white mb-1">品牌視覺重塑</h3>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>品牌視覺重塑</h3>
+                <p className="text-sm text-white/90 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>AI 生成藝術</p>
               </div>
             </div>
 
-            {/* Item 4: Website */}
-            <div className="md:col-span-1 rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl shadow-slate-200/50 min-h-[250px] md:min-h-0">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Website" className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            {/* Item 4: Website - 手機全寬 */}
+            <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Website" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 group-active:scale-105 group-active:grayscale-0" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                <h3 className="text-lg font-bold text-white mb-1">科技公司官網</h3>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>科技公司官網</h3>
+                <p className="text-sm text-white/90 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>響應式設計</p>
               </div>
             </div>
           </div>
