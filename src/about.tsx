@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Award, Users, Zap, Target, Globe, Briefcase, Star, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Zap, Briefcase, Star } from 'lucide-react';
 
 export default function About() {
     // 進入頁面時自動捲動到最上方

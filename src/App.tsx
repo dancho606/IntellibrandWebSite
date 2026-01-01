@@ -11,6 +11,7 @@ import PricingPlans from './components/PricingPlans';
 import videoDesktop from './assets/hero-desktop.mp4'; // 原本的寬影片
 // @ts-ignore
 import videoMobile from './assets/hero-mobile.mp4';   // 新的 1:1 影片
+import ServiceVideo from './components/ServiceVideo';
 
 // ========================================== 
 //   區域一：6 個獨立的服務詳情頁 (您可以分別編輯這裡)
@@ -35,29 +36,6 @@ function ServiceWebsite() {
               <Link to="/service/website/pricing" className="px-8 py-3 bg-[#2563eb] text-white rounded-full font-bold hover:bg-blue-600 transition-all hover:shadow-lg inline-block">查看方案報價</Link>
               <button className="px-8 py-3 border-2 border-[#2563eb] text-[#2563eb] rounded-full font-bold hover:bg-[#2563eb] hover:text-white transition-all">索取客製報價</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 2. AI 影片製作 - 獨立頁面
-function ServiceVideo() {
-  return (
-    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-2xl" alt="Video" />
-          <div>
-            <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 影片製作</h1>
-            <p className="text-xl text-slate-600 mb-6">Text-to-Video 技術革命。不需要攝影棚，只需腳本，AI 就能為您生成高品質的行銷短片。</p>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-purple-600 mr-2" /> 快速產出短影音</li>
-              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-purple-600 mr-2" /> 多語言配音</li>
-            </ul>
-            <button className="px-8 py-3 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800">觀看影片範例</button>
           </div>
         </div>
       </div>
@@ -584,11 +562,14 @@ function Home() {
           {/* CTA 按鈕組 - Mobile 單一按鈕，Desktop 雙按鈕 */}
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-up max-w-md sm:max-w-none mx-auto" style={{ animationDelay: '0.2s' }}>
             {/* 主要 CTA */}
-            <a href="#contact" className="group w-full sm:w-auto inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-bold text-slate-900 transition-all duration-300 bg-gradient-to-r from-white to-slate-100 rounded-full hover:shadow-2xl hover:shadow-white/30 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-0">
+            <button
+              onClick={() => setShowContactForm(true)}
+              className="group w-full sm:w-auto inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-bold text-slate-900 transition-all duration-300 bg-gradient-to-r from-white to-slate-100 rounded-full hover:shadow-2xl hover:shadow-white/30 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-0"
+            >
               <Zap className="mr-2 w-5 h-5 md:w-6 md:h-6 text-yellow-500 fill-current group-hover:animate-pulse" />
               立即預約諮詢
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
 
             {/* 次要 CTA - 僅桌面顯示 */}
             <a href="#portfolio" className="hidden sm:inline-flex items-center justify-center px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold glass-strong border border-white/30 text-white rounded-full hover:bg-white/20 transition-all duration-300 shadow-lg">
@@ -690,7 +671,13 @@ export default function App() {
           {isMobileMenuOpen && (
             <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-xl">
               <div className="px-4 pt-2 pb-6 space-y-1 text-center">
-                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600">關於智賦</Link>
+                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">關於智賦</Link>
+                <Link to="/#services" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">服務項目</Link>
+                <Link to="/#portfolio" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">精選案例</Link>
+                <Link to="/#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">客戶見證</Link>
+                <div className="pt-2">
+                  <Link to="/service/website/pricing" onClick={() => setIsMobileMenuOpen(false)} className="block px-6 py-3 text-base font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">查看方案報價</Link>
+                </div>
               </div>
             </div>
           )}
@@ -714,7 +701,7 @@ export default function App() {
         {/* 頁尾 */}
         <footer className="bg-slate-50 pt-16 pb-8 border-t border-slate-200 mt-auto">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-slate-400 text-sm">© 2024 IntelliBrand AI. All rights reserved.</p>
+            <p className="text-slate-400 text-sm">© 2026 IntelliBrand AI. All rights reserved.</p>
           </div>
         </footer>
 
