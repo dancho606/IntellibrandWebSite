@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowLeft, Check, X } from 'lucide-react';
+import { ArrowLeft, Check, X } from 'lucide-react';
 
 interface Question {
     id: string;
