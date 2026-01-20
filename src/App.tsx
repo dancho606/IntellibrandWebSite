@@ -209,7 +209,7 @@ function Home() {
               {
                 title: "AI 影片製作",
                 link: "/service/video",
-                desc: "Text-to-Video 技術，快速產出高品質短片",
+                desc: "快速產出高品質影片",
                 img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
                 gradient: "from-purple-600/90 to-purple-800/90"
               },
@@ -224,7 +224,7 @@ function Home() {
                 title: "自媒體代操",
                 link: "/service/social",
                 desc: "IG, TikTok, YouTube 全平台運營與內容生成",
-                img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                img: "/social-media-card.png",
                 gradient: "from-pink-600/90 to-pink-800/90"
               },
               {
