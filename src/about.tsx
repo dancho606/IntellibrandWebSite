@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, Briefcase, Star } from 'lucide-react';
 
 export default function About() {
@@ -48,80 +47,91 @@ export default function About() {
 
                 {/* 1. 麵包屑導航 (返回按鈕) */}
                 <div className="mb-8">
-                    <Link to="/" className="inline-flex items-center text-slate-500 hover:text-[#2563eb] transition-colors font-medium cursor-pointer">
+                    <a href="#home" className="inline-flex items-center text-slate-400 hover:text-white transition-colors font-medium cursor-pointer bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         返回首頁
-                    </Link>
+                    </a>
                 </div>
 
                 {/* 2. 標題與願景區塊 */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-                    <div>
-                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-[#2563eb] text-xs font-bold uppercase tracking-wider mb-6">
-                            Our Vision
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20 relative">
+                    <div className="z-10">
+                        <div className="inline-flex items-center px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest mb-6 border border-blue-500/20 backdrop-blur-md">
+                            OUR VISION
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-sans leading-tight">
+                        <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 font-display leading-[1.1]" style={{ textShadow: '0 0 30px rgba(37,99,235,0.3)' }}>
                             匯聚跨領域菁英<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563eb] to-[#06b6d4]">打造最強 AI 戰隊</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">打造最強 AI 戰隊</span>
                         </h1>
-                        <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                        <p className="text-lg text-slate-400 mb-8 leading-relaxed font-medium">
                             智賦 AI (IntelliBrand) 由來自科技、商業管理與高端社群的領袖共同創立。我們深信，真正的 AI 轉型不僅需要強大的技術底層，更需要精準的商業策略與細緻的服務體驗。
                         </p>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            我們的團隊結合了 AI 技術落地能力、國際視野與豐富的產業資源，致力於成為企業數位升級最可靠的夥伴。
-                        </p>
+                        <div className="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-xl">
+                            <p className="text-lg text-slate-300 leading-relaxed italic">
+                                「我們的團隊結合了 AI 技術落地能力、國際視野與豐富的產業資源，致力於成為企業數位升級最可靠的夥伴。」
+                            </p>
+                        </div>
                     </div>
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
-                        <img
-                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Team working together"
-                            className="relative rounded-2xl shadow-2xl border border-white/50 w-full h-auto object-cover"
-                        />
+                    <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-3xl transform rotate-3 opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-700"></div>
+                        <div className="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+                            <img
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Team working together"
+                                className="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        </div>
                     </div>
                 </div>
 
                 {/* 3. 核心團隊介紹 (Core Team) */}
-                <div className="mb-24">
+                <div className="mb-24 relative">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-slate-900 mb-4">核心領導團隊</h2>
-                        <div className="w-16 h-1 bg-[#2563eb] mx-auto rounded-full"></div>
-                        <p className="mt-4 text-slate-500">結合技術實力與商業洞察的黃金陣容</p>
+                        <h2 className="text-4xl font-bold text-white mb-4 font-display">核心領導團隊</h2>
+                        <div className="w-16 h-1.5 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
+                        <p className="mt-6 text-slate-400 font-medium">結合技術實力與商業洞察的黃金陣容</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {teamMembers.map((member, index) => (
-                            <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col group">
+                            <div key={index} className="bg-white/5 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-500 flex flex-col group shadow-2xl">
                                 {/* 照片區 */}
-                                <div className="h-80 overflow-hidden relative">
+                                <div className="h-96 overflow-hidden relative">
                                     <img
                                         src={member.img}
                                         alt={member.name}
-                                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                        className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent opacity-60"></div>
-                                    <div className="absolute bottom-4 left-4 text-white">
-                                        <p className="text-sm font-medium opacity-90 uppercase tracking-widest mb-1 bg-[#2563eb]/90 inline-block px-2 py-0.5 rounded">{member.role}</p>
-                                        <h3 className="text-2xl font-bold">{member.name}</h3>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80"></div>
+                                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <span className="px-3 py-1 bg-blue-500/80 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest">{member.role}</span>
+                                        </div>
+                                        <h3 className="text-3xl font-black font-display tracking-tight text-white drop-shadow-lg">{member.name}</h3>
                                     </div>
                                 </div>
 
                                 {/* 經歷/介紹區 */}
-                                <div className="p-8 flex-1 flex flex-col bg-white">
+                                <div className="p-8 flex-1 flex flex-col bg-slate-900/40">
                                     {member.titles ? (
-                                        <ul className="space-y-3">
+                                        <ul className="space-y-4">
                                             {member.titles.map((title, i) => (
-                                                <li key={i} className="flex items-start text-slate-600">
-                                                    <Briefcase className="w-4 h-4 text-[#2563eb] mt-1 mr-3 flex-shrink-0" />
+                                                <li key={i} className="flex items-start text-slate-300 group/item">
+                                                    <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center mr-3 flex-shrink-0 group-hover/item:bg-blue-500/40 transition-colors">
+                                                        <Briefcase className="w-3 h-3 text-blue-400" />
+                                                    </div>
                                                     <span className="text-sm font-medium leading-relaxed">{title}</span>
                                                 </li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <p className="text-slate-600 text-sm leading-relaxed flex items-start">
-                                            <Star className="w-4 h-4 text-yellow-500 mt-1 mr-3 flex-shrink-0" />
-                                            {member.desc}
-                                        </p>
+                                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                                            <p className="text-slate-300 text-sm leading-relaxed flex items-start">
+                                                <Star className="w-4 h-4 text-yellow-400 mt-0.5 mr-3 flex-shrink-0 animate-pulse" />
+                                                {member.desc}
+                                            </p>
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -130,38 +140,41 @@ export default function About() {
                 </div>
 
                 {/* 4. 核心數據 (Stats) */}
-                <div className="bg-white rounded-3xl p-10 shadow-xl border border-slate-100 mb-20">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-100">
-                        <div>
-                            <div className="text-4xl font-bold text-[#2563eb] mb-2">98%</div>
-                            <div className="text-slate-500 text-sm font-medium">客戶滿意度</div>
+                <div className="bg-white/5 backdrop-blur-2xl rounded-[40px] p-12 border border-white/20 mb-20 shadow-2xl relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-white/10 relative z-10">
+                        <div className="px-4">
+                            <div className="text-5xl font-black text-white mb-2 font-display tabular-nums">98%</div>
+                            <div className="text-blue-400 text-xs font-bold uppercase tracking-widest">客戶滿意度</div>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold text-[#2563eb] mb-2">3+</div>
-                            <div className="text-slate-500 text-sm font-medium">跨國產業經驗</div>
+                        <div className="px-4">
+                            <div className="text-5xl font-black text-white mb-2 font-display tabular-nums">3+</div>
+                            <div className="text-blue-400 text-xs font-bold uppercase tracking-widest">跨國產業經驗</div>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold text-[#2563eb] mb-2">10x</div>
-                            <div className="text-slate-500 text-sm font-medium">效率提升</div>
+                        <div className="px-4">
+                            <div className="text-5xl font-black text-white mb-2 font-display tabular-nums">10x</div>
+                            <div className="text-blue-400 text-xs font-bold uppercase tracking-widest">效率提升</div>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold text-[#2563eb] mb-2">15+</div>
-                            <div className="text-slate-500 text-sm font-medium">年資歷總和</div>
+                        <div className="px-4">
+                            <div className="text-5xl font-black text-white mb-2 font-display tabular-nums">15+</div>
+                            <div className="text-blue-400 text-xs font-bold uppercase tracking-widest">年資歷總和</div>
                         </div>
                     </div>
                 </div>
 
                 {/* 5. CTA 底部呼籲 */}
-                <div className="bg-slate-900 rounded-3xl p-12 text-center text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full filter blur-[80px] opacity-30"></div>
+                <div className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[40px] p-16 text-center text-white relative overflow-hidden border border-white/10 shadow-2xl">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full filter blur-[120px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500 rounded-full filter blur-[120px] opacity-10 translate-y-1/2 -translate-x-1/2"></div>
                     <div className="relative z-10">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">準備好與專業團隊合作了嗎？</h2>
-                        <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 font-display">準備好與專業團隊合作了嗎？</h2>
+                        <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg font-medium">
                             無論您是新創公司還是大型企業，我們都能為您量身打造最合適的 AI 轉型方案。
                         </p>
-                        <Link to="/#contact" className="inline-flex items-center justify-center px-8 py-3 bg-white text-slate-900 rounded-full font-bold hover:bg-blue-50 transition-colors cursor-pointer">
-                            <Zap className="w-5 h-5 mr-2 text-yellow-500 fill-current" /> 預約免費諮詢
-                        </Link>
+                        <a href="#contact" className="group relative inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-bold text-lg hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] transition-all duration-300 hover:-translate-y-1 active:scale-95">
+                            <Zap className="w-6 h-6 mr-3 text-yellow-300 fill-current group-hover:scale-125 transition-transform" />
+                            預約免費諮詢
+                        </a>
                     </div>
                 </div>
 

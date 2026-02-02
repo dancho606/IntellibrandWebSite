@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
     ArrowLeft, Play, Zap, MessageSquare, Check, Clock, RefreshCw
 } from 'lucide-react';
@@ -14,6 +13,7 @@ import {
     productionSteps,
     whyAIVideo
 } from '../data/videoServiceData';
+import { siteConfig } from '../data/config';
 
 export default function ServiceVideo() {
     const [showContactForm, setShowContactForm] = useState(false);
@@ -28,9 +28,9 @@ export default function ServiceVideo() {
                 <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
 
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-                    <Link to="/" className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors">
+                    <a href="#home" className="inline-flex items-center text-slate-400 hover:text-white mb-8 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" /> 返回首頁
-                    </Link>
+                    </a>
 
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight animate-fade-in-up">
                         不出鏡，也能做影片行銷<br />
@@ -224,101 +224,85 @@ export default function ServiceVideo() {
                     {/* 基礎方案 */}
                     {activeTab === 'plans' && (
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {videoPlans.map((plan) => (
+                            {videoPlans.map((plan, idx) => (
                                 <div
                                     key={plan.id}
-                                    className={`relative bg-slate-900/80 backdrop-blur-sm rounded-2xl p-8 border-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl ${plan.isPopular ? 'border-purple-500 shadow-purple-500/20' : 'border-slate-700 hover:border-slate-600'
+                                    className={`relative rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl ${plan.isPopular ? 'ring-2 ring-purple-500 ring-offset-4 ring-offset-slate-900 shadow-purple-500/20' : ''
                                         }`}
+                                    style={{ animationDelay: `${idx * 0.1}s` }}
                                 >
-                                    {plan.isPopular && (
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold rounded-full uppercase tracking-wider">
-                                            最多人選擇
-                                        </div>
-                                    )}
+                                    {/* Top Accent Bar */}
+                                    <div className={`h-1.5 w-full bg-gradient-to-r ${plan.gradient}`} />
 
-                                    <div className="text-center mb-6">
-                                        <div className="text-5xl mb-4">{plan.icon}</div>
-                                        <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
-                                        <p className="text-sm text-slate-400 mb-4">{plan.subtitle}</p>
-
-                                        {/* 價格顯示 */}
-                                        <div className="mb-4 pb-4 border-b border-slate-700">
-                                            {/* 正式價格 */}
-                                            <div className="mb-3">
-                                                <div className="text-xs text-slate-500 mb-1">正式定價</div>
-                                                <div className="flex items-baseline justify-center gap-2">
-                                                    <span className="text-sm text-slate-400">NT$</span>
-                                                    <span className="text-3xl font-bold text-slate-300">
-                                                        {plan.originalPrice.toLocaleString()}
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            {/* 限時優惠 */}
-                                            {plan.limitedTimeDiscount && (
-                                                <div className="mt-4 pt-4 border-t border-slate-700">
-                                                    <div className="text-xs text-yellow-400 font-bold mb-2">
-                                                        🔥 限時優惠 {plan.limitedTimeDiscount}% OFF
-                                                    </div>
-                                                    <div className="flex items-baseline justify-center gap-2">
-                                                        <span className="text-sm text-slate-400">限時特惠</span>
-                                                        <span className={`text-4xl font-bold bg-gradient-to-r ${plan.gradient} bg-clip-text text-transparent`}>
-                                                            {(plan.originalPrice * (1 - plan.limitedTimeDiscount / 100)).toLocaleString()}
-                                                        </span>
-                                                    </div>
-                                                    <div className="text-sm text-green-400 mt-2">
-                                                        立省 NT$ {(plan.originalPrice * plan.limitedTimeDiscount / 100).toLocaleString()}
-                                                    </div>
-                                                </div>
+                                    {/* Icon & Popular Tag */}
+                                    <div className="p-8 pb-4 flex justify-between items-start">
+                                        <div className="p-3 bg-white/5 rounded-2xl border border-white/10 shadow-inner group-hover:scale-110 transition-transform">
+                                            {siteConfig.uiSettings?.videoPlans?.useIcons3d && plan.icon3d ? (
+                                                <img src={plan.icon3d} alt={plan.name} className="w-12 h-12 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" />
+                                            ) : (
+                                                <span className="text-3xl">{plan.icon}</span>
                                             )}
                                         </div>
+                                        {plan.isPopular && (
+                                            <span className="px-3 py-1 bg-purple-500 text-white text-[10px] font-bold rounded-full uppercase tracking-widest shadow-lg shadow-purple-500/40">
+                                                最熱門
+                                            </span>
+                                        )}
+                                    </div>
 
-                                        <div className="flex items-center justify-center gap-4 text-sm text-slate-400 mb-4">
-                                            <div className="flex items-center gap-1">
-                                                <Clock className="w-4 h-4" />
-                                                <span>{plan.deliveryTime}</span>
-                                            </div>
-                                            <div className="flex items-center gap-1">
-                                                <RefreshCw className="w-4 h-4" />
-                                                <span>{plan.freeRevisions} 次修改</span>
+                                    {/* Content Area */}
+                                    <div className="px-8 pb-8">
+                                        <h3 className="text-2xl font-bold text-white mb-1 font-display">{plan.name}</h3>
+                                        <p className="text-slate-400 text-sm mb-6">{plan.subtitle}</p>
+
+                                        {/* Price Area */}
+                                        <div className="mb-6 pb-6 border-b border-white/10">
+                                            <div className="mb-3 text-slate-500 text-xs">正式定價 NT$ {plan.originalPrice.toLocaleString()}</div>
+                                            <div className="flex items-baseline justify-center gap-2">
+                                                <span className="text-sm text-purple-400">限時特約價 NT$</span>
+                                                <span className="text-4xl font-black text-white drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                                                    {(plan.originalPrice * (1 - (plan.limitedTimeDiscount || 0) / 100)).toLocaleString()}
+                                                </span>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* 方案內容 */}
-                                    <div className="mb-6">
-                                        <h4 className="text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider">方案內容</h4>
-                                        <ul className="space-y-2">
-                                            {plan.features.map((feature, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-300">
-                                                    <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                                                    <span>{feature}</span>
+                                        {/* Features List */}
+                                        <ul className="space-y-4 mb-8">
+                                            {plan.features.map((feature, fIdx) => (
+                                                <li key={fIdx} className="flex items-start gap-3">
+                                                    <div className="mt-1 w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                                        <Check className="w-3 h-3 text-purple-400" />
+                                                    </div>
+                                                    <span className="text-slate-300 text-sm leading-relaxed">{feature}</span>
                                                 </li>
                                             ))}
                                         </ul>
+
+                                        {/* CTA Button */}
+                                        <button
+                                            onClick={() => setShowContactForm(true)}
+                                            className={`w-full py-4 rounded-2xl font-bold transition-all duration-300 active:scale-95 shadow-xl ${plan.isPopular
+                                                ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:shadow-purple-500/30'
+                                                : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                                                }`}
+                                        >
+                                            立即預約製作
+                                        </button>
                                     </div>
 
-                                    {/* 包含項目 */}
-                                    <div className="mb-8 pb-6 border-b border-slate-700">
-                                        <h4 className="text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider">超值贈送</h4>
-                                        <ul className="space-y-2">
-                                            {plan.includes.map((item, idx) => (
-                                                <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
-                                                    <Check className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                                                    <span>{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <div className="flex items-center justify-center gap-4 text-[10px] text-slate-500 pb-4">
+                                        <div className="flex items-center gap-1">
+                                            <Clock className="w-3 h-3" />
+                                            <span>{plan.deliveryTime}</span>
+                                        </div>
+                                        <div className="flex items-center gap-1">
+                                            <RefreshCw className="w-3 h-3" />
+                                            <span>{plan.freeRevisions} 次修改</span>
+                                        </div>
                                     </div>
-
-                                    <button
-                                        onClick={() => setShowContactForm(true)}
-                                        className={`w-full py-3 rounded-full font-bold transition-all bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg hover:shadow-purple-500/30`}
-                                    >
-                                        立即預約
-                                    </button>
                                 </div>
                             ))}
+
                         </div>
                     )}
 
@@ -424,10 +408,10 @@ export default function ServiceVideo() {
                         </p>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* 6. Production Process */}
-            <section className="py-24 bg-slate-900">
+            < section className="py-24 bg-slate-900" >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">製作流程</h2>
@@ -449,10 +433,10 @@ export default function ServiceVideo() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* 7. FAQ */}
-            <section className="py-24 bg-slate-800/50">
+            < section className="py-24 bg-slate-800/50" >
                 <div className="max-w-3xl mx-auto px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold mb-4">常見問題</h2>
@@ -471,10 +455,10 @@ export default function ServiceVideo() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* 8. CTA */}
-            <section className="relative py-24 px-6 overflow-hidden">
+            < section className="relative py-24 px-6 overflow-hidden" >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-indigo-900 z-0"></div>
                 <div className="absolute top-0 left-0 w-full h-full">
                     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500/30 rounded-full blur-[150px] animate-pulse"></div>
@@ -509,15 +493,17 @@ export default function ServiceVideo() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Contact Form Modal */}
-            {showContactForm && (
-                <ContactForm
-                    onClose={() => setShowContactForm(false)}
-                    scriptUrl="https://script.google.com/macros/s/AKfycby4ODg5SvYnWNbg7r93-jMAZy0q_GXBFp1jA9sIzJkcvbHf9bIq3cicBB1UUYFbyG11/exec"
-                />
-            )}
-        </div>
+            {
+                showContactForm && (
+                    <ContactForm
+                        onClose={() => setShowContactForm(false)}
+                        scriptUrl="https://script.google.com/macros/s/AKfycby4ODg5SvYnWNbg7r93-jMAZy0q_GXBFp1jA9sIzJkcvbHf9bIq3cicBB1UUYFbyG11/exec"
+                    />
+                )
+            }
+        </div >
     );
 }

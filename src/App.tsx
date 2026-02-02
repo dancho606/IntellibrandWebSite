@@ -1,71 +1,44 @@
-///// <reference types="vite/client" />
-
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Brain, Menu, X, ArrowRight, Zap, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { HashRouter as Router } from 'react-router-dom';
+import { Menu, X, ArrowRight, Zap, ArrowLeft, Volume2, VolumeX } from 'lucide-react';
+import logo from './assets/logo.png';
 import About from './about';
 import ContactForm from './components/ContactForm';
 import PricingPlans from './components/PricingPlans';
+import { services } from './data/services'; // Imported Data Layer
+import { BottomNav } from './components/BottomNav'; // Imported Bottom Nav
+import { siteConfig, navItems } from './data/config'; // Imported Config
 //import heroBgImage from './assets/hero-ai.png'; //換影片
-// @ts-ignore
-import videoDesktop from './assets/hero-desktop.mp4'; // 原本的寬影片
-// @ts-ignore
-import videoMobile from './assets/hero-mobile.mp4';   // 新的 1:1 影片
 import ServiceVideo from './components/ServiceVideo';
 
 // ========================================== 
 //   區域一：6 個獨立的服務詳情頁 (您可以分別編輯這裡)
 // ==========================================
 
-// 1. AI 網站建置 - 獨立頁面
-function ServiceWebsite() {
-  return (
-    <div className="pt-24 pb-16 min-h-screen bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-2xl" alt="Website" />
-          <div>
-            <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 網站建置</h1>
-            <p className="text-xl text-slate-600 mb-6">我們結合 React 與 AI 技術，為您打造載入速度極快、SEO 架構完美的現代化官網。</p>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 響應式設計 (RWD)</li>
-              <li className="flex items-center text-slate-700"><CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" /> 後台管理系統</li>
-            </ul>
-            <div className="flex gap-4">
-              <Link to="/service/website/pricing" className="px-8 py-3 bg-[#2563eb] text-white rounded-full font-bold hover:bg-blue-600 transition-all hover:shadow-lg inline-block">查看方案報價</Link>
-              <button className="px-8 py-3 border-2 border-[#2563eb] text-[#2563eb] rounded-full font-bold hover:bg-[#2563eb] hover:text-white transition-all">索取客製報價</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
-// 3. AI 數位替身 - 獨立頁面
+
+// 3. AI 數位替身 - 展示組件
 function ServiceAvatar() {
   return (
     <div className="pt-24 pb-16 min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="mb-8"><a href="#home" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</a></div>
         <h1 className="text-4xl font-bold text-slate-900 mb-6 font-display">AI 數位替身</h1>
         <p className="text-xl text-slate-600 mb-8">打造企業專屬的 24 小時虛擬發言人。</p>
-        {/* 這裡示範不同的排版，方便您之後修改 */}
         <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-          <p>（這裡之後可以放數位替身的 Demo 影片）</p>
+          <p>（數位替身 Demo 區塊）</p>
         </div>
       </div>
     </div>
   );
 }
 
-// 4. 自媒體代操 - 獨立頁面
+// 4. 自媒體代操 - 展示組件
 function ServiceSocial() {
   return (
     <div className="pt-24 pb-16 min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="mb-8"><a href="#home" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</a></div>
         <h1 className="text-4xl font-bold text-slate-900 mb-6">自媒體代操</h1>
         <p className="text-xl text-slate-600">IG, TikTok, YouTube 全平台運營。</p>
       </div>
@@ -73,12 +46,12 @@ function ServiceSocial() {
   );
 }
 
-// 5. AI 企業導入 - 獨立頁面
+// 5. AI 企業導入 - 展示組件
 function ServiceEnterprise() {
   return (
     <div className="pt-24 pb-16 min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="mb-8"><a href="#home" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</a></div>
         <h1 className="text-4xl font-bold text-slate-900 mb-6">AI 企業導入</h1>
         <p className="text-xl text-slate-600">建置私有化 LLM 知識庫，優化內部流程。</p>
       </div>
@@ -86,12 +59,12 @@ function ServiceEnterprise() {
   );
 }
 
-// 6. AI 實戰課程 - 獨立頁面
+// 6. AI 實戰課程 - 展示組件
 function ServiceCourse() {
   return (
     <div className="pt-24 pb-16 min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-8"><Link to="/" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</Link></div>
+        <div className="mb-8"><a href="#home" className="text-slate-500 hover:text-[#2563eb] flex items-center gap-2"><ArrowLeft className="w-4 h-4" />返回首頁</a></div>
         <h1 className="text-4xl font-bold text-slate-900 mb-6">AI 實戰課程</h1>
         <p className="text-xl text-slate-600">企業內訓與個人進修。</p>
       </div>
@@ -105,6 +78,7 @@ function ServiceCourse() {
 // ==========================================
 function Home() {
   const [showContactForm, setShowContactForm] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   return (
     <>
@@ -112,77 +86,93 @@ function Home() {
       {showContactForm && (
         <ContactForm
           onClose={() => setShowContactForm(false)}
-          scriptUrl="https://script.google.com/macros/s/AKfycby4ODg5SvYnWNbg7r93-jMAZy0q_GXBFp1jA9sIzJkcvbHf9bIq3cicBB1UUYFbyG11/exec"
+          scriptUrl={siteConfig.contact.formScriptUrl}
         />
       )}
 
-      {/* 2. Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 z-10 overflow-hidden">
-        {/* Hero 背景區塊 */}
-        <div className="absolute inset-0 z-0 bg-slate-900">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover md:object-cover object-contain"
-          >
-            {/* 手機版：螢幕寬度小於 768px 時，載入這支 9:16 直式影片 */}
-            <source src={videoMobile} type="video/mp4" media="(max-width: 768px)" />
+      {/* 2. Hero Section (Portfolio Module Style - Bright) */}
+      <section className="relative pt-32 pb-24 px-4 z-10 overflow-hidden bg-slate-50">
+        {/* Modern Background Accents */}
+        <div className="absolute right-[-10%] top-[10%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[100px] -z-10"></div>
+        <div className="absolute left-[-10%] bottom-[10%] w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-[100px] -z-10"></div>
 
-            {/* 電腦版：其餘情況載入這支寬螢幕影片 */}
-            <source src={videoDesktop} type="video/mp4" />
+        <div className="max-w-5xl mx-auto flex flex-col items-center">
 
-            您的瀏覽器不支援 HTML5 影片。
-          </video>
-
-          {/* 漸層遮罩 (維持不變) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-50/60 to-slate-50"></div>
-        </div>
-        <div className="absolute right-[-10%] top-[20%] w-[800px] h-[800px] border border-blue-200/50 rounded-full animate-[spin_60s_linear_infinite]"></div>
-        <div className="absolute left-[-10%] bottom-[10%] w-[600px] h-[600px] border border-cyan-200/50 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
-
-        <div className="text-center max-w-5xl mx-auto relative z-10 px-4">
-          {/* 頂部標籤 */}
-          <div className="inline-flex items-center px-4 py-2 md:py-1.5 rounded-full glass-strong border border-white/30 shadow-lg text-[#2563eb] text-xs md:text-xs font-bold uppercase tracking-wider mb-6 md:mb-8 animate-fade-in-up">
-            <span className="flex h-2 w-2 relative mr-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563eb]"></span>
-            </span>
-            AI MARKETING REVOLUTION
-          </div>
-
-          {/* 主標題 - Mobile First */}
-          <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1] text-white animate-fade-in-up" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.9), -1px -1px 3px rgba(255,255,255,0.2), 0 0 50px rgba(0,0,0,0.7)' }}>
-            智慧賦能<br />
-            <span className="inline-block mt-2" style={{ color: '#06b6d4', textShadow: '0 0 2px white, 0 0 2px white, 0 0 3px white, 0 0 4px white, 3px 3px 6px rgba(0,0,0,0.8)' }}>讓 AI 幫您升級</span>
-          </h1>
-
-          {/* 說明文字 - 手機端優化 */}
-          <p className="mt-4 md:mt-6 max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white leading-relaxed animate-fade-in-up font-medium px-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.95), -1px -1px 2px rgba(255,255,255,0.2), 0 0 30px rgba(0,0,0,0.8)' }}>
-            AI 不再是科技巨頭的專利。我們協助您<span className="text-cyan-300 font-bold">輕鬆導入</span>自動化行銷，釋放潛能，讓業績與效率<span className="text-yellow-300 font-bold">同步翻倍</span>。<br className="hidden sm:block" />
-            <span className="block sm:inline mt-2">點擊下方按鈕，開啟您的自動化獲利之旅。</span>
-          </p>
-
-          {/* CTA 按鈕 - Mobile First */}
-          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row justify-center gap-4 md:gap-5 animate-fade-in-up max-w-md sm:max-w-none mx-auto">
-            {/* 主要 CTA - 手機端全寬 */}
-            <a href="#portfolio" className="group relative w-full sm:w-auto px-8 py-4 md:py-4 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] text-white rounded-full font-bold text-base md:text-base transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center">
-              <span className="relative z-10 flex items-center gap-2">
-                參考案例 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </a>
-
-            {/* 次要 CTA - 手機端全寬 */}
-            <button
-              onClick={() => setShowContactForm(true)}
-              className="w-full sm:w-auto px-8 py-4 md:py-4 rounded-full bg-white/25 border-2 border-white/60 text-white font-bold text-base md:text-base hover:bg-white/35 transition-all duration-300 shadow-lg backdrop-blur-md active:scale-95 min-h-[56px] md:min-h-[48px] flex items-center justify-center"
-              style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.95), -1px -1px 2px rgba(0,0,0,0.8)' }}
+          {/* A. Top Video Player Module */}
+          <div className="w-full aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl relative mb-16 group border-4 border-white isolate transform-gpu">
+            <video
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
             >
-              預約免費諮詢
+              <source src="/videos/hero-desktop.mp4" type="video/mp4" />
+            </video>
+            {/* Overlay Elements inside video */}
+            <div className="absolute inset-0 bg-black/10"></div>
+
+            {/* Mute/Unmute Button (Bottom Left) - Optimized for touch */}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMuted(!isMuted);
+              }}
+              className="absolute bottom-6 left-6 md:bottom-10 md:left-10 w-12 h-12 md:w-14 md:h-14 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 text-white hover:bg-black/60 transition-all z-20 active:scale-90 shadow-xl"
+              title={isMuted ? "取消靜音" : "靜音"}
+            >
+              {isMuted ? <VolumeX className="w-6 h-6 md:w-7 md:h-7" /> : <Volume2 className="w-6 h-6 md:w-7 md:h-7" />}
             </button>
+            <div className="absolute top-6 left-6 md:top-10 md:left-10 flex flex-col items-start">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30 overflow-hidden">
+                  <img src={logo} alt="Logo" className="w-full h-full object-contain scale-125" />
+                </div>
+                <div>
+                  <div className="text-white font-bold text-lg md:text-xl tracking-tighter leading-none">智賦 AI</div>
+                  <div className="text-white/80 text-[10px] uppercase font-bold tracking-widest leading-none mt-1">IntelliBrand AI</div>
+                </div>
+              </div>
+            </div>
+            {/* Center Dynamic Text - Removed to prevent blocking visuals */}
           </div>
+
+          {/* B. Middle Brand Assets */}
+          <div className="flex flex-col items-center text-center space-y-8 mb-20 animate-fade-in-up">
+            {/* Sub-Asset Image (Placeholder for brand image) */}
+            <div className="w-48 h-28 rounded-2xl overflow-hidden shadow-lg border-2 border-white ring-8 ring-slate-100/50 group">
+              <img src="https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&q=80&w=800" alt="Vision" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            </div>
+
+            {/* Main Title Section */}
+            <div className="relative">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="h-px w-12 bg-orange-400"></div>
+                <div className="text-orange-500 text-[10px] md:text-xs font-black tracking-[0.3em] uppercase">Visionary Media Solutions</div>
+                <div className="h-px w-12 bg-orange-400"></div>
+              </div>
+
+              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[1.1]">
+                智賦<span className="text-[#2563eb]">AI</span><br className="sm:hidden" />品牌行銷公司
+              </h1>
+
+              <div className="mt-8 flex flex-col items-center">
+                <div className="text-slate-400 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4">Empowering Brands with AI Intelligence</div>
+                <div className="bg-orange-500 text-white px-5 py-2 rounded-md text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20">
+                  品牌提升 • 數位賦能 • 全案操盤
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* C. Bottom Quote Block */}
+          <div className="w-full max-w-3xl bg-white/40 backdrop-blur-xl border border-white rounded-3xl p-8 md:p-10 shadow-xl relative group hover:bg-white/60 transition-colors animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <p className="text-slate-600 text-base md:text-lg leading-relaxed italic font-medium text-center">
+              「結合<span className="text-[#2563eb] font-bold">十年行銷實戰</span>與頂尖 AI 技術，為企業實施<span className="text-orange-500 font-bold">精準賦能</span>。我們不只提升品牌價值，更為您打造持續成長的自動化獲利引擎。」
+            </p>
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-blue-600 w-12 h-1 rounded-full shadow-lg"></div>
+          </div>
+
         </div>
       </section>
 
@@ -196,89 +186,42 @@ function Home() {
             <p className="mt-3 md:mt-4 text-slate-600 text-base md:text-lg font-medium px-4">全方位的 AI 賦能解決方案，精準對接商業需求</p>
           </div>
 
-          {/* 服務卡片 - Mobile First Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                title: "AI 網站建置",
-                link: "/service/website/pricing",
-                desc: "Web App 開發與極速響應式設計",
-                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-blue-600/90 to-blue-800/90"
-              },
-              {
-                title: "AI 影片製作",
-                link: "/service/video",
-                desc: "Text-to-Video 技術，快速產出高品質短片",
-                img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-purple-600/90 to-purple-800/90"
-              },
-              {
-                title: "AI 數位替身",
-                link: "/service/avatar",
-                desc: "打造企業專屬虛擬代言人，自動化影片生成",
-                img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-cyan-600/90 to-cyan-800/90"
-              },
-              {
-                title: "自媒體代操",
-                link: "/service/social",
-                desc: "IG, TikTok, YouTube 全平台運營與內容生成",
-                img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-pink-600/90 to-pink-800/90"
-              },
-              {
-                title: "AI 企業導入",
-                link: "/service/enterprise",
-                desc: "優化工作流程，整合 AI 工具至企業內部",
-                img: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-indigo-600/90 to-indigo-800/90"
-              },
-              {
-                title: "AI 實戰課程",
-                link: "/service/course",
-                desc: "企業內訓與個人進修，掌握最新 AI 工具應用",
-                img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                gradient: "from-emerald-600/90 to-emerald-800/90"
-              }
-            ].map((item, index) => (
-              <Link
-                to={item.link}
-                key={index}
-                className="group relative overflow-hidden rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 card-3d border border-white/20 h-72 md:h-80 block cursor-pointer animate-fade-in-up"
+          {/* 服務卡片 - Mobile First Optimized Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
+            {services.map((item, index) => (
+              <a
+                href={item.link}
+                key={item.id}
+                className="group relative overflow-hidden rounded-xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-slate-900 aspect-[3/4] sm:aspect-[4/3] md:h-80 block cursor-pointer animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* 背景圖片 */}
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105"
-                  loading="lazy"
-                />
-
-                {/* 漸變遮罩 - 手機端更深 */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-80 md:opacity-70 group-hover:opacity-85 transition-opacity duration-500`}></div>
-
-                {/* Glassmorphism 頂部裝飾 - 僅桌面 */}
-                <div className="hidden md:block absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-
-                {/* 內容區 - Mobile First */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-10">
-                  {/* 標題 */}
-                  <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white font-display flex items-center gap-2 md:gap-3" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                    {item.title}
-                    <ArrowRight className="w-6 h-6 md:w-5 md:h-5 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-x-2 transition-all duration-300" />
-                  </h3>
-
-                  {/* 描述文字 - 手機端常顯，桌面端 hover 顯示 */}
-                  <p className="text-sm md:text-base leading-relaxed text-white/95 md:text-white/90 font-medium md:opacity-100 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-0 md:group-hover:translate-y-0" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                    {item.desc}
-                  </p>
+                {/* 1. Background Image */}
+                <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-110">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
 
-                {/* 點擊回饋效果 - 僅手機 */}
-                <div className="md:hidden absolute inset-0 bg-white/10 opacity-0 active:opacity-100 transition-opacity pointer-events-none"></div>
-              </Link>
+                {/* 2. Color Filter Overlay (Gradient) */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-70 group-hover:opacity-60 transition-opacity duration-500`}></div>
+
+                {/* 3. Dark Bottom Gradient for Text Readability */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent opacity-90"></div>
+
+                {/* 4. Content Area (Left-Aligned at Bottom) */}
+                <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end z-10 text-left items-start">
+                  <h3 className="text-sm sm:text-lg md:text-3xl font-bold text-white font-display mb-0.5 md:mb-1 flex items-center gap-1 sm:gap-1.5 md:gap-2 drop-shadow-lg leading-tight">
+                    {item.title}
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </h3>
+                  <p className="text-[10px] md:text-base text-white/90 font-medium leading-normal max-w-full md:max-w-[90%] drop-shadow-md line-clamp-2">
+                    {item.shortDescription}
+                  </p>
+                </div>
+              </a>
             ))}
           </div>
         </div>
@@ -589,33 +532,7 @@ function Home() {
   );
 }
 
-// --- 元件：萬用捲動控制器 (這就是您要的功能) ---
-// 它會自動判斷：
-// 1. 如果只是換頁 (沒有 #)，就回到最上面。
-// 2. 如果有 # (例如 #services)，就滑動到該區塊。
-function ScrollToTop() {
-  const { pathname, hash } = useLocation();
 
-  useEffect(() => {
-    // 情況 A：網址帶有錨點 (例如 /#services)
-    if (hash) {
-      // 等待 0.1 秒，確保首頁的畫面已經長出來了，才開始滑動
-      const timer = setTimeout(() => {
-        const element = document.getElementById(hash.substring(1)); // 去掉 # 號，找 ID
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' }); // 平滑滑動
-        }
-      }, 100);
-      return () => clearTimeout(timer); // 清理計時器
-    }
-    // 情況 B：純粹換頁 (例如從首頁點到關於我們)
-    else {
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, hash]); // 只要路徑或 hash 改變，就重新執行這個功能
-
-  return null;
-}
 
 // ==========================================
 //   區域三：App 主程式 (路由設定中心)
@@ -623,42 +540,109 @@ function ScrollToTop() {
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash || '#home');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleHashChange = () => {
+      const hash = window.location.hash || '#home';
+      setCurrentHash(hash);
+
+      // Handle scrolling to section if it's a sub-section of home
+      const homeSections = ['#services', '#portfolio', '#testimonials', '#why-us', '#team', '#contact'];
+      if (homeSections.includes(hash)) {
+        setTimeout(() => {
+          const element = document.getElementById(hash.substring(1));
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    // Initial check
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
+
+  const renderMainContent = () => {
+    // Determine which "page" to show based on hash
+    if (currentHash.startsWith('#service-website-pricing')) {
+      return <PricingPlans />;
+    }
+    if (currentHash.startsWith('#service-video')) {
+      return <ServiceVideo />;
+    }
+    if (currentHash === '#about') {
+      return <About />;
+    }
+    if (currentHash === '#service-avatar') {
+      return <ServiceAvatar />;
+    }
+    if (currentHash === '#service-social') {
+      return <ServiceSocial />;
+    }
+    if (currentHash === '#service-enterprise') {
+      return <ServiceEnterprise />;
+    }
+    if (currentHash === '#service-course') {
+      return <ServiceCourse />;
+    }
+
+    // Default to Home (including sub-sections like #services)
+    return <Home />;
+  };
 
   return (
     <Router>
-      <ScrollToTop />
       <div className="bg-slate-50 text-slate-900 antialiased overflow-x-hidden font-sans">
         <style>{`
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;500;700&display=swap');
           .text-gradient { background: linear-gradient(135deg, #2563eb 0%, #06b6d4 50%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
           .font-display { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; }
           .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(226, 232, 240, 0.8); }
+          .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+          @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         `}</style>
+
+        {/* Floating Mobile Bottom Nav */}
+        <BottomNav />
 
         {/* 1. 導覽列 */}
         <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'shadow-md bg-white/95 backdrop-blur-md' : 'glass-nav'}`}>
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="flex items-center justify-between h-20">
-              <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#2563eb] to-[#06b6d4] flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                  <Brain className="w-5 h-5" />
+              <a href="#home" className="flex-shrink-0 flex items-center gap-2 group">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563eb] to-[#06b6d4] flex items-center justify-center shadow-lg overflow-hidden border border-white/20">
+                  <img src={logo} alt="Logo" className="w-full h-full object-contain scale-110" />
                 </div>
                 <span className="font-display text-xl font-bold tracking-tight text-slate-900">
-                  IntelliBrand<span className="text-[#06b6d4]">.AI</span>
+                  智賦AI/ <span className="text-[#06b6d4]">Intellibrand AI</span>
                 </span>
-              </Link>
+              </a>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-center space-x-8">
-                  <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">關於智賦</Link>
-                  <Link to="/#services" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">服務項目</Link>
-                  <Link to="/#portfolio" className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">精選案例</Link>
-                  <Link to="/#contact" className="px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">聯絡我們</Link>
+                  {/* 使用 Data Config 渲染導覽列 */}
+                  {navItems.filter(item => item.inTopNav && !item.isPrimary).map(item => (
+                    <a key={item.path} href={item.path} className="text-sm font-medium text-slate-600 hover:text-[#2563eb] transition-colors">
+                      {item.label}
+                    </a>
+                  ))}
+                  {/* 預約按鈕 (Primary) */}
+                  {navItems.find(item => item.isPrimary) && (
+                    <a href={navItems.find(item => item.isPrimary)!.path} className="px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">
+                      {navItems.find(item => item.isPrimary)!.label}
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="md:hidden">
@@ -671,37 +655,30 @@ export default function App() {
           {isMobileMenuOpen && (
             <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-xl">
               <div className="px-4 pt-2 pb-6 space-y-1 text-center">
-                <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">關於智賦</Link>
-                <Link to="/#services" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">服務項目</Link>
-                <Link to="/#portfolio" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">精選案例</Link>
-                <Link to="/#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">客戶見證</Link>
+                {/*  Mobile Menu Items from Data */}
+                {navItems.filter(item => item.inTopNav && !item.isPrimary).map(item => (
+                  <a key={item.path} href={item.path} onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-[#2563eb] transition-colors">
+                    {item.label}
+                  </a>
+                ))}
+
                 <div className="pt-2">
-                  <Link to="/service/website/pricing" onClick={() => setIsMobileMenuOpen(false)} className="block px-6 py-3 text-base font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">查看方案報價</Link>
+                  <a href="#service-website-pricing" onClick={() => setIsMobileMenuOpen(false)} className="block px-6 py-3 text-base font-semibold text-white bg-slate-900 rounded-full hover:bg-[#2563eb] transition-all">查看方案報價</a>
                 </div>
               </div>
             </div>
           )}
         </nav>
 
-        {/* --- 路由設定：在這裡定義每個網址要顯示哪個元件 --- */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-
-          {/* 6 個獨立的服務分頁 (對應上面定義的元件) */}
-          <Route path="/service/website" element={<ServiceWebsite />} />
-          <Route path="/service/website/pricing" element={<PricingPlans />} />
-          <Route path="/service/video" element={<ServiceVideo />} />
-          <Route path="/service/avatar" element={<ServiceAvatar />} />
-          <Route path="/service/social" element={<ServiceSocial />} />
-          <Route path="/service/enterprise" element={<ServiceEnterprise />} />
-          <Route path="/service/course" element={<ServiceCourse />} />
-        </Routes>
+        {/* --- 渲染主內容區塊 --- */}
+        <main className="animate-fade-in" key={currentHash}>
+          {renderMainContent()}
+        </main>
 
         {/* 頁尾 */}
         <footer className="bg-slate-50 pt-16 pb-8 border-t border-slate-200 mt-auto">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-slate-400 text-sm">© 2026 IntelliBrand AI. All rights reserved.</p>
+            <p className="text-slate-400 text-sm">{siteConfig.copyright}</p>
           </div>
         </footer>
 

@@ -32,6 +32,7 @@ export interface VideoPlan {
     limitedTimeDiscount?: number; // 限時優惠折扣（%）
     isPopular?: boolean;
     icon: string;
+    icon3d?: string;
     gradient: string;
     deliveryTime: string;
     freeRevisions: number;
@@ -47,6 +48,7 @@ export const videoPlans: VideoPlan[] = [
         originalPrice: 5800,
         limitedTimeDiscount: 20, // 限時 8 折
         icon: "🎬",
+        icon3d: "/src/assets/icons/icon-video-basic.png",
         gradient: "from-blue-500 to-cyan-500",
         deliveryTime: "3-5 個工作天",
         freeRevisions: 3,
@@ -71,6 +73,7 @@ export const videoPlans: VideoPlan[] = [
         limitedTimeDiscount: 20,
         isPopular: true,
         icon: "📦",
+        icon3d: "/src/assets/icons/icon-video-pro.png",
         gradient: "from-purple-500 to-pink-500",
         deliveryTime: "5-7 個工作天",
         freeRevisions: 3,
@@ -95,6 +98,7 @@ export const videoPlans: VideoPlan[] = [
         originalPrice: 15800,
         limitedTimeDiscount: 20,
         icon: "🔄",
+        icon3d: "/src/assets/icons/icon-video-ultimate.png",
         gradient: "from-emerald-500 to-teal-500",
         deliveryTime: "每週交付",
         freeRevisions: 3,
@@ -123,6 +127,7 @@ export interface SubscriptionPlan {
     features: string[];
     gradient: string;
     icon: string;
+    icon3d?: string;
     badge?: string;
 }
 
