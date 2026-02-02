@@ -1,4 +1,4 @@
-import { Home, Grid, User, Zap, MessageCircle, FileText } from 'lucide-react';
+import { Home, Grid, Zap, FileText, Building2 } from 'lucide-react';
 
 export const siteConfig = {
     name: "IntelliBrand.AI",
@@ -36,35 +36,28 @@ export const navItems = [
         inTopNav: false
     },
     {
-        label: '關於智賦',
-        path: '#about',
-        icon: User,
-        inBottomNav: false,
-        inTopNav: true
-    },
-    {
-        label: '服務',
+        label: '服務項目',
         path: '#services',
         icon: Grid,
         inBottomNav: true,
         inTopNav: true
     },
     {
-        label: '案例',
+        label: '精選案例',
         path: '#portfolio',
         icon: FileText,
         inBottomNav: true,
         inTopNav: true
     },
     {
-        label: '客戶見證',
-        path: '#testimonials',
-        icon: MessageCircle,
-        inBottomNav: false,
+        label: '合作企業',
+        path: '#partners',
+        icon: Building2,
+        inBottomNav: true,
         inTopNav: true
     },
     {
-        label: '預約',
+        label: '聯絡我們',
         path: '#contact',
         icon: Zap,
         inBottomNav: true,

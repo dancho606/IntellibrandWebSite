@@ -305,6 +305,32 @@ function Home() {
         </div>
       </section>
 
+      {/* 5. 合作企業 (Partners) - NEW Section */}
+      <section id="partners" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-white overflow-hidden border-b border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          {/* 標題 */}
+          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">合作夥伴</h2>
+            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
+            <p className="text-slate-600 text-base md:text-lg font-medium">深獲各界知名品牌與企業主的信任與肯定</p>
+          </div>
+
+          {/* 合作標誌牆 - 採用簡約灰調，Hover 恢復色彩 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center opacity-60">
+            {/* 這裡先放置占位圖，以後用戶可以自行替換真實 Logo */}
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="w-32 h-12 bg-slate-200 rounded-lg animate-pulse flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Partner {i}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <p className="text-slate-400 text-sm font-medium italic">「累積與超過上百家品牌合作經驗，為企業實現 AI 轉型賦能。」</p>
+          </div>
+        </div>
+      </section>
+
       {/* 5. 客戶見證 (Testimonials) - 輪播設計 */}
       <section id="testimonials" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -551,7 +577,7 @@ export default function App() {
       setCurrentHash(hash);
 
       // Handle scrolling to section if it's a sub-section of home
-      const homeSections = ['#services', '#portfolio', '#testimonials', '#why-us', '#team', '#contact'];
+      const homeSections = ['#services', '#portfolio', '#partners', '#testimonials', '#why-us', '#team', '#contact'];
       if (homeSections.includes(hash)) {
         setTimeout(() => {
           const element = document.getElementById(hash.substring(1));
