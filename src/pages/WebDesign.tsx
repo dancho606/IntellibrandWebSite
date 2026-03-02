@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Shield, Key, Rocket, CheckCircle2, ChevronDown, Zap, X, Plus, ShoppingCart, Users, Database, Globe, ArrowRight, Search } from 'lucide-react';
+import { Shield, Key, Rocket, CheckCircle2, ChevronDown, Zap, X, Plus, ShoppingCart, Users, Database, Globe, ArrowRight, Search } from 'lucide-react';
 
 // 添加 FAQ 資料結構
 const faqs = [
-    { q: "建置期間可以修改多少次？", a: "我們提供 2 次免費的小幅修改，確保成品符合您的期望！超過次數則視複雜度另行報價。" },
+    { q: "建置期間可以修改多少次？", a: "我們每年提供 2 次免費的小幅修改，確保成品符合您的期望！超過次數則視複雜度另行報價。" },
     { q: "如果我沒有文案和圖片怎麼辦？", a: "不用擔心，我們可以提供圖庫素材，並運用 AI 輔助生成專業的行銷文案，讓網站快速上線。" },
     { q: "未來的維護費包含什麼？不續約會怎樣？", a: "維護費包含主機續約、網域更新與安全性防護。如果您選擇不續約，我們可以提供原始碼包裝供您自行搬遷（適用買斷制方案）。" },
 ];
@@ -33,19 +33,6 @@ export default function WebDesign() {
     return (
         <div className="pt-24 pb-16 min-h-screen bg-slate-50 flex flex-col">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
-
-                {/* 返回按鈕 */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="mb-8"
-                >
-                    <a href="#home" className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-slate-200 text-slate-600 hover:text-cyan-600 hover:bg-white transition-all shadow-sm">
-                        <ArrowLeft className="w-4 h-4" />
-                        返回首頁
-                    </a>
-                </motion.div>
 
                 {/* Hero Section */}
                 <motion.div
