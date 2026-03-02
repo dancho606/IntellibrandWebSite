@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
-import { Menu, X, ArrowRight, Zap, ArrowLeft, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, ArrowRight, Zap, ArrowLeft } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from './assets/logo.png';
 import About from './about';
+import WebDesign from './pages/WebDesign'; // 新增的網站建置專頁
 import ContactForm from './components/ContactForm';
 import PricingPlans from './components/PricingPlans';
 import { services } from './data/services'; // Imported Data Layer
@@ -78,7 +80,6 @@ function ServiceCourse() {
 // ==========================================
 function Home() {
   const [showContactForm, setShowContactForm] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
 
   return (
     <>
@@ -90,75 +91,53 @@ function Home() {
         />
       )}
 
-      {/* 2. Hero Section (Portfolio Module Style - Bright) */}
-      <section className="relative pt-32 pb-24 px-4 z-10 overflow-hidden bg-slate-50">
-        {/* Modern Background Accents */}
-        <div className="absolute right-[-10%] top-[10%] w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[100px] -z-10"></div>
-        <div className="absolute left-[-10%] bottom-[10%] w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-[100px] -z-10"></div>
+      {/* 2. Hero Section (Full Background Video Theme) */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-24 md:pt-40 md:pb-32 px-4 z-10 overflow-hidden">
+        {/* Full Background Video */}
+        <div className="absolute inset-0 w-full h-full -z-20 bg-slate-900">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-70 md:opacity-80"
+          >
+            <source src="/videos/hero-desktop.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-        <div className="max-w-5xl mx-auto flex flex-col items-center">
+        {/* Dynamic Dark Gradient Overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/40 to-slate-900/90 -z-10"></div>
 
-          {/* A. Top Video Player Module */}
-          <div className="w-full aspect-video rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl relative mb-16 group border-4 border-white isolate transform-gpu">
-            <video
-              autoPlay
-              loop
-              muted={isMuted}
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="/videos/hero-desktop.mp4" type="video/mp4" />
-            </video>
-            {/* Overlay Elements inside video */}
-            <div className="absolute inset-0 bg-black/10"></div>
+        <div className="max-w-5xl mx-auto flex flex-col items-center relative z-10 w-full mt-8 md:mt-12">
 
-            {/* Mute/Unmute Button (Bottom Left) - Optimized for touch */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMuted(!isMuted);
-              }}
-              className="absolute bottom-6 left-6 md:bottom-10 md:left-10 w-12 h-12 md:w-14 md:h-14 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 text-white hover:bg-black/60 transition-all z-20 active:scale-90 shadow-xl"
-              title={isMuted ? "取消靜音" : "靜音"}
-            >
-              {isMuted ? <VolumeX className="w-6 h-6 md:w-7 md:h-7" /> : <Volume2 className="w-6 h-6 md:w-7 md:h-7" />}
-            </button>
-            <div className="absolute top-6 left-6 md:top-10 md:left-10 flex flex-col items-start">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/30 overflow-hidden">
-                  <img src={logo} alt="Logo" className="w-full h-full object-contain scale-125" />
-                </div>
-                <div>
-                  <div className="text-white font-bold text-lg md:text-xl tracking-tighter leading-none">智賦 AI</div>
-                  <div className="text-white/80 text-[10px] uppercase font-bold tracking-widest leading-none mt-1">IntelliBrand AI</div>
-                </div>
-              </div>
+          {/* A. Top Logo Badge */}
+          <div className="flex flex-col items-center mb-8 md:mb-12 animate-fade-in-up">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 overflow-hidden mb-4 shadow-2xl">
+              <img src={logo} alt="Logo" className="w-full h-full object-contain scale-125" />
             </div>
-            {/* Center Dynamic Text - Removed to prevent blocking visuals */}
+            <div className="text-center">
+              <div className="text-white font-bold text-xl md:text-2xl tracking-tighter leading-none">智賦 AI</div>
+              <div className="text-cyan-400 text-xs md:text-sm uppercase font-bold tracking-widest leading-none mt-2">IntelliBrand AI</div>
+            </div>
           </div>
 
-          {/* B. Middle Brand Assets */}
-          <div className="flex flex-col items-center text-center space-y-8 mb-20 animate-fade-in-up">
-            {/* Sub-Asset Image (Placeholder for brand image) */}
-            <div className="w-48 h-28 rounded-2xl overflow-hidden shadow-lg border-2 border-white ring-8 ring-slate-100/50 group">
-              <img src="https://images.unsplash.com/photo-1519750783826-e2420f4d687f?auto=format&fit=crop&q=80&w=800" alt="Vision" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-            </div>
-
-            {/* Main Title Section */}
+          {/* B. Main Title Section */}
+          <div className="flex flex-col items-center text-center space-y-8 mb-16 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <div className="relative">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="h-px w-12 bg-orange-400"></div>
-                <div className="text-orange-500 text-[10px] md:text-xs font-black tracking-[0.3em] uppercase">Visionary Media Solutions</div>
-                <div className="h-px w-12 bg-orange-400"></div>
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px w-12 bg-cyan-400/50"></div>
+                <div className="text-cyan-400 text-[10px] md:text-xs font-black tracking-[0.3em] uppercase drop-shadow-lg">Visionary Media Solutions</div>
+                <div className="h-px w-12 bg-cyan-400/50"></div>
               </div>
 
-              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 leading-[1.1]">
-                智賦<span className="text-[#2563eb]">AI</span><br className="sm:hidden" />品牌行銷公司
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[1.1] drop-shadow-2xl">
+                智賦<span className="text-cyan-400">AI</span><br className="sm:hidden" />品牌行銷公司
               </h1>
 
               <div className="mt-8 flex flex-col items-center">
-                <div className="text-slate-400 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4">Empowering Brands with AI Intelligence</div>
-                <div className="bg-orange-500 text-white px-5 py-2 rounded-md text-[10px] font-black uppercase tracking-widest shadow-lg shadow-orange-500/20">
+                <div className="text-slate-300 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-4 drop-shadow-md">Empowering Brands with AI Intelligence</div>
+                <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest shadow-xl shadow-cyan-900/50 border border-white/10">
                   品牌提升 • 數位賦能 • 全案操盤
                 </div>
               </div>
@@ -166,11 +145,11 @@ function Home() {
           </div>
 
           {/* C. Bottom Quote Block */}
-          <div className="w-full max-w-3xl bg-white/40 backdrop-blur-xl border border-white rounded-3xl p-8 md:p-10 shadow-xl relative group hover:bg-white/60 transition-colors animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <p className="text-slate-600 text-base md:text-lg leading-relaxed italic font-medium text-center">
-              「結合<span className="text-[#2563eb] font-bold">十年行銷實戰</span>與頂尖 AI 技術，為企業實施<span className="text-orange-500 font-bold">精準賦能</span>。我們不只提升品牌價值，更為您打造持續成長的自動化獲利引擎。」
+          <div className="w-full max-w-3xl glass-strong bg-slate-900/40 border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl relative group hover:bg-slate-900/60 transition-colors animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <p className="text-slate-200 text-base md:text-lg leading-relaxed italic font-medium text-center drop-shadow-md">
+              「結合<span className="text-cyan-400 font-bold">十年行銷實戰</span>與頂尖 AI 技術，為企業實施<span className="text-orange-400 font-bold">精準賦能</span>。我們不只提升品牌價值，更為您打造持續成長的自動化獲利引擎。」
             </p>
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-blue-600 w-12 h-1 rounded-full shadow-lg"></div>
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-cyan-500 w-12 h-1 rounded-full shadow-lg shadow-cyan-500/50"></div>
           </div>
 
         </div>
@@ -192,7 +171,7 @@ function Home() {
               <a
                 href={item.link}
                 key={item.id}
-                className="group relative overflow-hidden rounded-xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-slate-900 aspect-[3/4] sm:aspect-[4/3] md:h-80 block cursor-pointer animate-fade-in-up"
+                className="group relative overflow-hidden rounded-xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-slate-900 aspect-[4/3] md:h-80 block cursor-pointer animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* 1. Background Image */}
@@ -227,109 +206,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. 精選案例 (Portfolio) - Mobile First Bento Grid */}
-      <section id="portfolio" className="relative py-16 md:py-24 z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-slate-100 md:skew-y-2 transform origin-top-left -z-10"></div>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-          {/* 標題與篩選 */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-12 gap-4">
-            <div className="animate-fade-in-up">
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 text-slate-900">精選案例</h2>
-              <p className=" text-slate-600 text-base md:text-lg font-medium">融合創意與技術的實戰成果展示</p>
-            </div>
-            {/* 篩選按鈕 - 手機端橫向滾動 */}
-            <div className="flex gap-2 overflow-x-auto md:overflow-visible w-full md:w-auto pb-2 md:pb-0 scroll-container animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-gradient-to-r from-slate-900 to-slate-800 text-white text-sm font-semibold shadow-lg shadow-slate-900/20 whitespace-nowrap flex-shrink-0">全部作品</button>
-              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">Web App</button>
-              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">影片</button>
-              <button className="px-4 md:px-5 py-2 md:py-2.5 rounded-full glass-strong text-slate-700 border border-slate-300 text-sm font-medium hover:bg-white/50 transition-all whitespace-nowrap flex-shrink-0">AI</button>
-            </div>
-          </div>
 
-          {/* Bento Grid Layout - 手機單欄，桌面 Bento */}
-          <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-5 md:h-[650px]">
-            {/* Item 1: Featured Project - 手機全寬 */}
-            <div className="md:col-span-2 md:row-span-2 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[300px] md:min-h-0 animate-fade-in-up">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Dashboard" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/50 to-transparent md:from-slate-900/90 md:via-slate-900/40 md:to-transparent opacity-90 group-hover:opacity-95 transition-opacity"></div>
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
-                {/* 標籤 */}
-                <div className="flex justify-end">
-                  <span className="px-3 py-1.5 glass-strong border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">SaaS Platform</span>
-                </div>
-                {/* 內容 */}
-                <div className="animate-slide-in-right">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 md:mb-3 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>FinTech 智能數據後台</h3>
-                  <p className="text-sm md:text-base text-white/95 md:text-slate-200 max-w-md md:opacity-100 md:group-hover:opacity-100 md:translate-y-0 md:group-hover:translate-y-0 transition-all duration-500 leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
-                    專為金融機構打造的 AI 預測儀表板，整合即時股市數據流與使用者行為熱點分析。
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Item 2: Digital Avatar - 手機全寬 */}
-            <div className="md:col-span-2 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <img src="https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Avatar" className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
-              <div className="absolute inset-0 p-6 md:p-6 flex flex-col justify-between z-10">
-                <div className="flex justify-end">
-                  <span className="px-3 py-1.5 glass-strong border border-white/30 text-white rounded-full text-xs font-bold tracking-wider uppercase">AI Avatar</span>
-                </div>
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1 md:mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>虛擬代言人專案</h3>
-                  <p className="text-sm text-white/95 md:text-slate-300 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>AI 生成真人級別口播影片</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Item 3: AI Art - 手機全寬 */}
-            <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Art" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-active:scale-105" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
-              <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>品牌視覺重塑</h3>
-                <p className="text-sm text-white/90 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>AI 生成藝術</p>
-              </div>
-            </div>
-
-            {/* Item 4: Website - 手機全寬 */}
-            <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 card-3d min-h-[250px] md:min-h-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Website" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 group-active:scale-105 group-active:grayscale-0" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent md:from-slate-900/80 md:to-transparent"></div>
-              <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>科技公司官網</h3>
-                <p className="text-sm text-white/90 font-medium" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>響應式設計</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. 合作企業 (Partners) - NEW Section */}
-      <section id="partners" className="relative py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-white overflow-hidden border-b border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          {/* 標題 */}
-          <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-slate-900">合作夥伴</h2>
-            <div className="w-16 h-1.5 bg-gradient-to-r from-[#2563eb] to-[#06b6d4] mx-auto rounded-full mb-3 md:mb-4"></div>
-            <p className="text-slate-600 text-base md:text-lg font-medium">深獲各界知名品牌與企業主的信任與肯定</p>
-          </div>
-
-          {/* 合作標誌牆 - 採用簡約灰調，Hover 恢復色彩 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center opacity-60">
-            {/* 這裡先放置占位圖，以後用戶可以自行替換真實 Logo */}
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="w-32 h-12 bg-slate-200 rounded-lg animate-pulse flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">Partner {i}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <p className="text-slate-400 text-sm font-medium italic">「累積與超過上百家品牌合作經驗，為企業實現 AI 轉型賦能。」</p>
-          </div>
-        </div>
-      </section>
 
 
 
@@ -400,7 +277,7 @@ export default function App() {
       setCurrentHash(hash);
 
       // Handle scrolling to section if it's a sub-section of home
-      const homeSections = ['#services', '#portfolio', '#partners', '#contact'];
+      const homeSections = ['#services', '#contact'];
       if (homeSections.includes(hash)) {
         setTimeout(() => {
           const element = document.getElementById(hash.substring(1));
@@ -433,6 +310,9 @@ export default function App() {
     }
     if (currentHash === '#about') {
       return <About />;
+    }
+    if (currentHash === '#web-design' || currentHash === '#service-website') {
+      return <WebDesign />;
     }
     if (currentHash === '#service-avatar') {
       return <ServiceAvatar />;
@@ -519,10 +399,19 @@ export default function App() {
           )}
         </nav>
 
-        {/* --- 渲染主內容區塊 --- */}
-        <main className="animate-fade-in" key={currentHash}>
-          {renderMainContent()}
-        </main>
+        {/* --- 渲染主內容區塊 (加入 Framer Motion 過渡) --- */}
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={currentHash}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="w-full flex-grow flex flex-col"
+          >
+            {renderMainContent()}
+          </motion.main>
+        </AnimatePresence>
 
         {/* 頁尾 */}
         <footer className="bg-slate-50 pt-16 pb-8 border-t border-slate-200 mt-auto">

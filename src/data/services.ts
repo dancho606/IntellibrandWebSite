@@ -7,7 +7,7 @@ export const services: Service[] = [
         shortDescription: "Web App 開發與極速響應式設計",
         fullDescription: "我們結合 React 與 AI 技術，為您打造載入速度極快、SEO 架構完美的現代化官網。包含響應式設計 (RWD) 與客製化後台管理系統。",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        link: "#service-website-pricing",
+        link: "#web-design",
         gradient: "from-blue-600/90 to-blue-800/90",
         icon3d: "/src/assets/icons/icon-website.png"
     },
